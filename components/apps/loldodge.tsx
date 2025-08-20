@@ -26,7 +26,7 @@ export default function loldodge({ isDarkMode = true }: LoLDodgeProps) {
   return (
     <div className={`h-full ${bgColor} ${textColor} flex flex-col`}>
       {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-neutral-900">
+        <div className="absolute inset-0 flex items-center justify-center bg-neutral-800">
           <div className="text-center">
             <div className="relative w-16 h-16 mx-auto mb-4">
               <Image
