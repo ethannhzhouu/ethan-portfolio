@@ -169,15 +169,26 @@ export default function Menubar({
         )}
       </div>
 
-      <div className="flex items-center space-x-3">
-        <span className="mr-1">{batteryLevel}%</span>
-        <div className="relative">
-          <div className="w-6 h-3 border border-current rounded-sm relative">
-            <div className="absolute top-0 left-0 bottom-0 bg-current" style={{ width: `${batteryLevel}%` }}></div>
-            <div className="absolute -right-1 top-1/2 transform -translate-y-1/2 w-1 h-2 bg-current rounded-r-sm"></div>
-            {isCharging && <div className="absolute inset-0 flex items-center justify-center text-xs">⚡</div>}
-          </div>
-        </div>
+<div className="flex items-center space-x-3">
+  <div className="relative">
+    <div 
+      className={`w-12 h-5 rounded-[3px] border border-current flex items-center 
+      ${isCharging ? 'bg-green-500/20' : ''}`}
+    >
+      <div 
+        className={`h-4 mx-0.5 rounded-[2px] transition-all duration-300 relative
+        ${isCharging ? 'bg-green-500' : 'bg-current'}`} 
+        style={{ width: `${Math.max(2, (batteryLevel))}%` }}
+      >
+        <span className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 text-[11px] font-bold whitespace-nowrap text-white">
+          {batteryLevel}%
+        </span>
+      </div>
+      {/* ...existing charging indicator code... */}
+    </div>
+    <div className="absolute -right-[2px] top-1/2 -translate-y-1/2 w-[2px] h-3 bg-current rounded-r-sm" />
+  </div>
+
 
         <div className="relative">
           <button className="wifi-icon" onClick={toggleWifiPopup}>

@@ -36,7 +36,7 @@ export default function Snake({ isDarkMode = true }: SnakeProps) {
   // Color scheme - green chessboard theme
   const darkGreenTile = "#2d5016"
   const lightGreenTile = "#4a7c23"
-  const gameAreaBg = isDarkMode ? "#1a1a1a" : "#f8f9fa"
+  const gameAreaBg = isDarkMode ? "#131212ff" : "#f8f9fa"
   const uiTextColor = isDarkMode ? "#ffffff" : "#1f2937"
 
   // Create new apple position

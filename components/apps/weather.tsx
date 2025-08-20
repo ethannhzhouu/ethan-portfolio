@@ -148,17 +148,16 @@ interface Particle {
 
 export default function Weather({ isDarkMode = true }: WeatherProps) {
   const [city, setCity] = useState("San Francisco")
-  const [searchQuery, setSearchQuery] = useState("")
   const [weather, setWeather] = useState(weatherData["San Francisco"])
   const [condition, setCondition] = useState<WeatherCondition>("partly-cloudy")
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const particles = useRef<Particle[]>([])
   const animationRef = useRef<number | null>(null)
   
-  const bgColor = isDarkMode ? "bg-gray-900" : "bg-gray-100"
+  const bgColor = isDarkMode ? "bg-neutral-900" : "bg-gray-100"
   const textColor = isDarkMode ? "text-white" : "text-gray-800"
-  const cardBg = isDarkMode ? "bg-gray-800" : "bg-white"
-  const borderColor = isDarkMode ? "border-gray-700" : "border-gray-200"
+  const cardBg = isDarkMode ? "bg-neutral-800" : "bg-white"
+  const borderColor = isDarkMode ? "border-neutral-700" : "border-gray-200"
   
   // Initialize particles and animation
   useEffect(() => {
@@ -235,64 +234,64 @@ export default function Weather({ isDarkMode = true }: WeatherProps) {
 const initParticles = () => {
   particles.current = []
   
-  const count = condition === "rainy" ? 150 : 
-                condition === "snowy" ? 100 : 
-                condition === "sunny" ? 70 : 40
+  const count = condition === "rainy" ? 100 : 
+                condition === "snowy" ? 80 : 
+                condition === "sunny" ? 50 : 30
   
   for (let i = 0; i < count; i++) {
     let particle: Particle
     
     if (condition === "rainy") {
-      // Enhanced rain particles
+      // Cartoonish rain drops
       particle = {
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: Math.random() * 3 + 1,
-        speedX: Math.random() * 2 - 1,
-        speedY: Math.random() * 15 + 15,
-        opacity: Math.random() * 0.6 + 0.4,
+        size: Math.random() * 4 + 3,
+        speedX: Math.random() * 1 - 0.5,
+        speedY: Math.random() * 12 + 10,
+        opacity: Math.random() * 0.8 + 0.2,
         color: isDarkMode ? 
-          `rgba(${150 + Math.random() * 50}, ${200 + Math.random() * 55}, ${255}, 0.8)` : 
-          `rgba(${100 + Math.random() * 50}, ${150 + Math.random() * 55}, ${255}, 0.6)`
+          `rgba(${100 + Math.random() * 50}, ${200 + Math.random() * 55}, ${255}, 0.9)` : 
+          `rgba(${80 + Math.random() * 50}, ${150 + Math.random() * 55}, ${255}, 0.8)`
       }
     } else if (condition === "snowy") {
-      // Enhanced snow particles
+      // Cartoonish snowflakes
       particle = {
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: Math.random() * 4 + 2,
+        size: Math.random() * 5 + 4,
         speedX: Math.random() * 2 - 1,
-        speedY: Math.random() * 1.5 + 1,
-        opacity: Math.random() * 0.4 + 0.6,
+        speedY: Math.random() * 1 + 0.5,
+        opacity: Math.random() * 0.5 + 0.5,
         color: isDarkMode ?
-          `rgba(255, 255, ${240 + Math.random() * 15}, ${0.7 + Math.random() * 0.3})` :
-          `rgba(255, 255, ${250 + Math.random() * 5}, ${0.8 + Math.random() * 0.2})`
+          `rgba(${220 + Math.random() * 35}, ${220 + Math.random() * 35}, ${255}, 0.9)` :
+          `rgba(${240 + Math.random() * 15}, ${240 + Math.random() * 15}, ${255}, 0.95)`
       }
     } else if (condition === "sunny") {
-      // Enhanced sun particles
+      // Cartoonish sun sparkles
       particle = {
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: Math.random() * 5 + 1,
-        speedX: (Math.random() - 0.5) * 0.8,
-        speedY: (Math.random() - 0.5) * 0.8,
-        opacity: Math.random() * 0.6 + 0.4,
+        size: Math.random() * 6 + 2,
+        speedX: (Math.random() - 0.5) * 1.2,
+        speedY: (Math.random() - 0.5) * 1.2,
+        opacity: Math.random() * 0.7 + 0.3,
         color: isDarkMode ? 
-          `rgba(${255}, ${180 + Math.random() * 75}, ${0}, ${Math.random() * 0.6 + 0.4})` : 
-          `rgba(${255}, ${220 + Math.random() * 35}, ${100 + Math.random() * 50}, ${Math.random() * 0.5 + 0.5})`
+          `rgba(${255}, ${160 + Math.random() * 95}, ${0}, ${Math.random() * 0.8 + 0.2})` : 
+          `rgba(${255}, ${200 + Math.random() * 55}, ${50 + Math.random() * 50}, ${Math.random() * 0.7 + 0.3})`
       }
     } else {
-      // Enhanced cloud particles
+      // Cartoonish clouds
       particle = {
         x: Math.random() * 100,
-        y: Math.random() * 40,
-        size: Math.random() * 40 + 30,
-        speedX: Math.random() * 0.3 - 0.15,
-        speedY: (Math.random() - 0.5) * 0.05,
-        opacity: Math.random() * 0.3 + 0.1,
+        y: Math.random() * 30,
+        size: Math.random() * 50 + 40,
+        speedX: Math.random() * 0.2 - 0.1,
+        speedY: (Math.random() - 0.5) * 0.03,
+        opacity: Math.random() * 0.4 + 0.2,
         color: isDarkMode ? 
-          `rgba(${200 + Math.random() * 55}, ${200 + Math.random() * 55}, ${220}, ${Math.random() * 0.2 + 0.2})` : 
-          `rgba(${255}, ${255}, ${255}, ${Math.random() * 0.4 + 0.3})`
+          `rgba(${180 + Math.random() * 75}, ${180 + Math.random() * 75}, ${200}, ${Math.random() * 0.3 + 0.3})` : 
+          `rgba(${250}, ${250}, ${250}, ${Math.random() * 0.5 + 0.4})`
       }
     }
     
@@ -300,7 +299,6 @@ const initParticles = () => {
   }
 }
 
-// Update the updateParticles function with enhanced rendering
 const updateParticles = (ctx: CanvasRenderingContext2D, width: number, height: number) => {
   particles.current.forEach(p => {
     const x = (p.x / 100) * width
@@ -309,64 +307,91 @@ const updateParticles = (ctx: CanvasRenderingContext2D, width: number, height: n
     ctx.beginPath()
     
     if (condition === "rainy") {
-      ctx.strokeStyle = p.color
-      ctx.lineWidth = p.size
+      // Draw cartoonish raindrop
+      ctx.beginPath()
       ctx.moveTo(x, y)
-      ctx.lineTo(x + p.speedX, y + p.size * 3)
-      ctx.stroke()
+      ctx.bezierCurveTo(
+        x - p.size, y + p.size * 2,
+        x + p.size, y + p.size * 2,
+        x, y
+      )
+      ctx.fillStyle = p.color
+      ctx.fill()
       
+      // Add splash effect when reaching bottom
       if (p.y > 95) {
         ctx.beginPath()
-        ctx.arc(x, (p.y / 100) * height, p.size * 2, 0, Math.PI * 2)
-        ctx.fillStyle = p.color
+        const splashSize = p.size * 0.8
+        ctx.arc(x - splashSize, y, splashSize, 0, Math.PI, true)
+        ctx.arc(x + splashSize, y, splashSize, 0, Math.PI, true)
+        ctx.fillStyle = `rgba(${150 + Math.random() * 50}, ${200 + Math.random() * 55}, 255, 0.4)`
         ctx.fill()
       }
     } else if (condition === "snowy") {
-      const numberOfPoints = 6
-      const rotation = (Math.PI * 2) / numberOfPoints
+      // Draw cartoonish snowflake
+      const points = 6
+      const innerRadius = p.size * 0.5
+      const outerRadius = p.size
       
-      for (let i = 0; i < numberOfPoints; i++) {
-        ctx.moveTo(x, y)
-        const x2 = x + Math.cos(rotation * i) * p.size
-        const y2 = y + Math.sin(rotation * i) * p.size
-        ctx.lineTo(x2, y2)
+      for (let i = 0; i < points * 2; i++) {
+        const radius = i % 2 === 0 ? outerRadius : innerRadius
+        const angle = (i * Math.PI) / points
+        const px = x + Math.cos(angle) * radius
+        const py = y + Math.sin(angle) * radius
+        
+        if (i === 0) {
+          ctx.moveTo(px, py)
+        } else {
+          ctx.lineTo(px, py)
+        }
+      }
+      ctx.closePath()
+      ctx.fillStyle = p.color
+      ctx.fill()
+    } else if (condition === "sunny") {
+      // Draw cartoonish sun sparkle
+      const spikes = 8
+      for (let i = 0; i < spikes; i++) {
+        const angle = (i * Math.PI * 2) / spikes
+        const innerPoint = p.size * 0.4
+        const outerPoint = p.size
+        
+        ctx.beginPath()
+        ctx.moveTo(x + Math.cos(angle) * innerPoint, y + Math.sin(angle) * innerPoint)
+        ctx.lineTo(x + Math.cos(angle) * outerPoint, y + Math.sin(angle) * outerPoint)
+        ctx.strokeStyle = p.color
+        ctx.lineWidth = 2
+        ctx.stroke()
       }
       
-      ctx.strokeStyle = p.color
-      ctx.lineWidth = p.size / 3
-      ctx.stroke()
-    } else if (condition === "sunny") {
-      const gradient = ctx.createRadialGradient(x, y, 0, x, y, p.size)
-      gradient.addColorStop(0, p.color)
-      gradient.addColorStop(1, 'rgba(255, 255, 200, 0)')
-      ctx.fillStyle = gradient
-      ctx.arc(x, y, p.size, 0, Math.PI * 2)
+      ctx.beginPath()
+      ctx.arc(x, y, p.size * 0.4, 0, Math.PI * 2)
+      ctx.fillStyle = p.color
       ctx.fill()
     } else {
-      const gradient = ctx.createRadialGradient(x, y, 0, x, y, p.size)
-      gradient.addColorStop(0, p.color)
-      gradient.addColorStop(1, `rgba(255, 255, 255, 0)`)
-      ctx.fillStyle = gradient
-      ctx.arc(x, y, p.size, 0, Math.PI * 2)
+      // Draw cartoonish cloud
+      ctx.beginPath()
+      const radius = p.size
+      ctx.arc(x, y, radius * 0.5, 0, Math.PI * 2)
+      ctx.arc(x + radius * 0.4, y, radius * 0.4, 0, Math.PI * 2)
+      ctx.arc(x - radius * 0.4, y, radius * 0.4, 0, Math.PI * 2)
+      ctx.fillStyle = p.color
       ctx.fill()
     }
-    
 
-    p.x += p.speedX * 0.1
-    p.y += p.speedY * 0.1
+    // Update particle positions
+    p.x += p.speedX * 0.2
+    p.y += p.speedY * 0.2
     
+    // Reset particles when they move out of bounds
     if (condition === "rainy") {
       if (p.y > 100) {
         p.y = -5
         p.x = Math.random() * 100
-        p.speedY = Math.random() * 15 + 15
       }
     } else if (condition === "snowy") {
       if (p.y > 100) {
         p.y = -2
-        p.x = Math.random() * 100
-      }
-      if (p.x < -2 || p.x > 102) {
         p.x = Math.random() * 100
       }
     } else if (condition === "sunny") {
@@ -381,18 +406,6 @@ const updateParticles = (ctx: CanvasRenderingContext2D, width: number, height: n
   })
 }
   
-  const handleSearch = () => {
-    const query = searchQuery.trim()
-    if (query && Object.keys(weatherData).some(city => city.toLowerCase().includes(query.toLowerCase()))) {
-      const foundCity = Object.keys(weatherData).find(city => 
-        city.toLowerCase().includes(query.toLowerCase())
-      )
-      if (foundCity) {
-        setCity(foundCity)
-      }
-    }
-    setSearchQuery("")
-  }
   
   const getWeatherIcon = (condition: string) => {
     if (condition.includes("sunny")) return <Sun className="w-6 h-6" />
@@ -413,27 +426,7 @@ const updateParticles = (ctx: CanvasRenderingContext2D, width: number, height: n
       {}
       <div className="relative z-10 flex flex-col h-full">
         {}
-        <div className="p-4 flex items-center space-x-2">
-          <div className="relative flex-1">
-            <Input
-              type="text"
-              placeholder="Search city..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-              className={`pl-10 ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-300'}`}
-            />
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-          </div>
-          <Button 
-            onClick={handleSearch}
-            variant={isDarkMode ? "outline" : "default"}
-            className={isDarkMode ? "border-gray-700" : ""}
-          >
-            Search
-          </Button>
-        </div>
-        
+
         {}
         <div className="px-6 py-4 flex flex-col md:flex-row items-center justify-between">
           <div className="flex flex-col items-center md:items-start mb-4 md:mb-0">
@@ -527,6 +520,12 @@ const updateParticles = (ctx: CanvasRenderingContext2D, width: number, height: n
             ))}
           </div>
         </div>
+<div className="px-6 mt-6 mb-4">
+        <p className={`text-sm text-center ${isDarkMode ? 'text-gray-400' : 'text-gray-500'} italic`}>
+          Note: This weather app uses mock data for demonstration purposes.
+        </p>
+      </div>
+
       </div>
     </div>
   )

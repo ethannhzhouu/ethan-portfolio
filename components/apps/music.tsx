@@ -47,9 +47,9 @@ export default function Music({ isDarkMode = true }: MusicProps) {
 
   const currentTrack = playlist[currentTrackIndex]
 
-  const bgColor = isDarkMode ? "bg-gray-800" : "bg-white"
+  const bgColor = isDarkMode ? "bg-neutral-900" : "bg-white"
   const textColor = isDarkMode ? "text-white" : "text-gray-800"
-  const secondaryBg = isDarkMode ? "bg-gray-800" : "bg-gray-100"
+  const secondaryBg = isDarkMode ? "bg-neutral-900" : "bg-gray-100"
 
   useEffect(() => {
     const audio = audioRef.current

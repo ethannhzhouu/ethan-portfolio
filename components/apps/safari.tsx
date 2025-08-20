@@ -29,10 +29,10 @@ export default function Safari({ isDarkMode = true }: SafariProps) {
   }, [])
 
   const textColor = isDarkMode ? "text-white" : "text-gray-800"
-  const bgColor = isDarkMode ? "bg-neutral-800" : "bg-white"
-  const toolbarBg = isDarkMode ? "bg-neutral-800" : "bg-gray-100"
-  const inputBg = isDarkMode ? "bg-neutral-800" : "bg-gray-200"
-  const borderColor = isDarkMode ? "border-gray-700" : "border-gray-200"
+  const bgColor = isDarkMode ? "bg-neutral-900" : "bg-white"
+  const toolbarBg = isDarkMode ? "bg-neutral-900" : "bg-gray-100"
+  const inputBg = isDarkMode ? "bg-neutral-900" : "bg-gray-200"
+  const borderColor = isDarkMode ? "border-neutral-700" : "border-gray-200"
   const cardBg = isDarkMode ? "bg-neutral-800" : "bg-gray-100"
   const hoverBg = isDarkMode ? "hover:bg-neutral-800" : "hover:bg-gray-100"
 

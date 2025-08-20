@@ -1,7 +1,17 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Wifi, Bluetooth, Moon, Sun, Volume2, VolumeX, Maximize } from "lucide-react"
+import { 
+  Wifi, 
+  Bluetooth, 
+  Moon, 
+  Sun, 
+  Volume2, 
+  VolumeX, 
+  Maximize,
+  MinusIcon,
+  PlusIcon 
+} from "lucide-react"
 
 interface ControlCenterProps {
   onClose: () => void
@@ -23,17 +33,14 @@ export default function ControlCenter({
   const [volume, setVolume] = useState(75)
   const [isFullscreen, setIsFullscreen] = useState(false)
 
-  // Load WiFi state from localStorage
   useEffect(() => {
     const savedWifi = localStorage.getItem("wifiEnabled")
     if (savedWifi !== null) {
       setWifiEnabled(savedWifi === "true")
     }
 
-    // Check if we're in fullscreen mode
     setIsFullscreen(!!document.fullscreenElement)
 
-    // Add fullscreen change event listener
     const handleFullscreenChange = () => {
       setIsFullscreen(!!document.fullscreenElement)
     }
@@ -45,88 +52,105 @@ export default function ControlCenter({
     }
   }, [])
 
-  // Update the Control Center to store WiFi state in localStorage
   const toggleWifi = () => {
     const newState = !wifiEnabled
     setWifiEnabled(newState)
     localStorage.setItem("wifiEnabled", newState.toString())
   }
 
-  // Toggle fullscreen mode
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch((err) => {
-        console.error(`Error attempting to enable fullscreen: ${err.message}`)
-      })
+      document.documentElement.requestFullscreen()
     } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen()
-      }
+      document.exitFullscreen()
     }
   }
 
   return (
-    <div
-      className="fixed top-8 right-4 w-80 bg-gray-800/80 backdrop-blur-xl rounded-xl overflow-hidden shadow-2xl z-40"
+    <div 
+      className="fixed top-1 right-1 w-80 bg-white/10 dark:bg-gray-800/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/50 overflow-hidden"
       onClick={(e) => e.stopPropagation()}
     >
-      <div className="p-4">
-        <div className="grid grid-cols-4 gap-3 mb-4">
-          <button
-            className={`flex flex-col items-center justify-center p-3 rounded-xl ${
-              wifiEnabled ? "bg-blue-500" : "bg-gray-700"
-            }`}
-            onClick={toggleWifi}
-          >
-            <Wifi className="w-6 h-6 text-white mb-1" />
-            <span className="text-white text-xs">Wi-Fi</span>
-          </button>
+    {/* Top spacing */}
+    <div className="pt-5" />
+    
+    <div className="p-4 space-y-4">
 
-          <button
-            className={`flex flex-col items-center justify-center p-3 rounded-xl ${
-              bluetoothEnabled ? "bg-blue-500" : "bg-gray-700"
-            }`}
-            onClick={() => setBluetoothEnabled(!bluetoothEnabled)}
-          >
-            <Bluetooth className="w-6 h-6 text-white mb-1" />
-            <span className="text-white text-xs">Bluetooth</span>
-          </button>
 
-          <button
-            className={`flex flex-col items-center justify-center p-3 rounded-xl ${
-              isDarkMode ? "bg-blue-500" : "bg-gray-700"
-            }`}
-            onClick={onToggleDarkMode}
-          >
-            {isDarkMode ? <Moon className="w-6 h-6 text-white mb-1" /> : <Sun className="w-6 h-6 text-white mb-1" />}
-            <span className="text-white text-xs">{isDarkMode ? "Dark" : "Light"}</span>
-          </button>
-
-          <button
-            className={`flex flex-col items-center justify-center p-3 rounded-xl ${
-              isFullscreen ? "bg-blue-500" : "bg-gray-700"
-            }`}
-            onClick={toggleFullscreen}
-          >
-            <Maximize className="w-6 h-6 text-white mb-1" />
-            <span className="text-white text-xs">{isFullscreen ? "Exit" : "Fullscreen"}</span>
-          </button>
-        </div>
-
-        <div className="bg-gray-700 rounded-xl p-3 mb-3">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-white text-sm">Display</span>
-            <span className="text-white text-sm">{brightness}%</span>
+        {/* Display & Theme Controls */}
+        <div className="space-y-4">
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm font-medium text-gray-700 dark:text-white/90">Display</span>
+              <span className="text-xs text-gray-500 dark:text-white/70">{brightness}%</span>
+            </div>
+            <input
+              type="range"
+              min="10"
+              max="100"
+              value={brightness}
+              onChange={(e) => onBrightnessChange(Number(e.target.value))}
+              className="w-full h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full appearance-none cursor-pointer"
+            />
           </div>
-          <input
-            type="range"
-            min="10"
-            max="100"
-            value={brightness}
-            onChange={(e) => onBrightnessChange(Number.parseInt(e.target.value))}
-            className="w-full h-1 bg-gray-600 rounded-full appearance-none cursor-pointer"
-          />
+
+          <button
+            onClick={onToggleDarkMode}
+            className="w-full flex items-center justify-between p-3 rounded-xl bg-gray-100 dark:bg-gray-700/50 hover:bg-gray-200 dark:hover:bg-gray-700/70"
+          >
+            <span className="text-sm text-gray-700 dark:text-white/90">Theme</span>
+            {isDarkMode ? 
+              <Moon className="w-4 h-4 text-gray-600 dark:text-white/70" /> : 
+              <Sun className="w-4 h-4 text-gray-600 dark:text-white/70" />
+            }
+          </button>
         </div>
+
+        {/* Quick Settings Grid */}
+        <div className="grid grid-cols-2 gap-3">
+          <button
+            onClick={toggleWifi}
+            className={`flex items-center justify-between p-3 rounded-xl transition-colors ${
+              wifiEnabled 
+                ? "bg-blue-500 hover:bg-blue-600" 
+                : "bg-gray-100 dark:bg-gray-700/50 hover:bg-gray-200 dark:hover:bg-gray-700/70"
+            }`}
+          >
+            <span className={`text-sm ${wifiEnabled ? "text-white" : "text-gray-700 dark:text-white/90"}`}>
+              Wi-Fi
+            </span>
+            <Wifi className={`w-4 h-4 ${wifiEnabled ? "text-white" : "text-gray-600 dark:text-white/70"}`} />
+          </button>
+
+          <button
+            onClick={() => setBluetoothEnabled(!bluetoothEnabled)}
+            className={`flex items-center justify-between p-3 rounded-xl transition-colors ${
+              bluetoothEnabled 
+                ? "bg-blue-500 hover:bg-blue-600" 
+                : "bg-gray-100 dark:bg-gray-700/50 hover:bg-gray-200 dark:hover:bg-gray-700/70"
+            }`}
+          >
+            <span className={`text-sm ${bluetoothEnabled ? "text-white" : "text-gray-700 dark:text-white/90"}`}>
+              Bluetooth
+            </span>
+            <Bluetooth className={`w-4 h-4 ${bluetoothEnabled ? "text-white" : "text-gray-600 dark:text-white/70"}`} />
+          </button>
+        </div>
+
+        {/* Fullscreen Toggle */}
+        <button
+          onClick={toggleFullscreen}
+          className={`w-full flex items-center justify-between p-3 rounded-xl transition-colors ${
+            isFullscreen 
+              ? "bg-blue-500 hover:bg-blue-600" 
+              : "bg-gray-100 dark:bg-gray-700/50 hover:bg-gray-200 dark:hover:bg-gray-700/70"
+          }`}
+        >
+          <span className={`text-sm ${isFullscreen ? "text-white" : "text-gray-700 dark:text-white/90"}`}>
+            {isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
+          </span>
+          <Maximize className={`w-4 h-4 ${isFullscreen ? "text-white" : "text-gray-600 dark:text-white/70"}`} />
+        </button>
       </div>
     </div>
   )

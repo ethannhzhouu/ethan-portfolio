@@ -13,6 +13,10 @@ import Weather from "@/components/apps/weather"
 import LinkedIn from "@/components/apps/linkedin"
 import Resume from "@/components/apps/resume"
 import Snake from "@/components/apps/snake"
+import Blackjack from "./apps/blackjack"
+import Photos from "./apps/photos"
+import Youtube from "./apps/youtube"
+import loldodge from "./apps/loldodge"
 
 
 const componentMap: Record<string, React.ComponentType<{ isDarkMode?: boolean }>> = {
@@ -26,6 +30,10 @@ const componentMap: Record<string, React.ComponentType<{ isDarkMode?: boolean }>
   LinkedIn,
   Resume,
   Snake,
+  Blackjack,
+  Photos,
+  Youtube,
+  loldodge,
 }
 
 interface WindowProps {
@@ -178,12 +186,12 @@ const toggleMaximize = () => {
       ? "bg-neutral-800"
       : "bg-neutral-800"
     : isActive
-      ? "bg-gray-200"
-      : "bg-gray-100"
+      ? "bg-neutral-300"
+      : "bg-neutral-300"
 
-  const contentBgClass = isDarkMode ? "bg-gray-900" : "bg-white"
+  const contentBgClass = isDarkMode ? "bg-neutral-900" : "bg-white"
   const textClass = isDarkMode ? "text-white" : "text-gray-800"
-  const resizeBorderClass = isDarkMode ? "border-gray-700" : "border-gray-300"
+  const resizeBorderClass = isDarkMode ? "border-neutral-700" : "border-gray-300"
 
   return (
     <div
@@ -194,6 +202,7 @@ const toggleMaximize = () => {
         top: `${position.y}px`,
         width: `${size.width}px`,
         height: `${size.height}px`,
+        zIndex: window.zIndex || (isActive ? 10 : 0), 
       }}
       onClick={onFocus}
     >

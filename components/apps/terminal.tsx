@@ -359,7 +359,7 @@ export default function Terminal({ isDarkMode = true}: TerminalProps) {
             
             {/* GitHub iframe */}
             <iframe
-              src="https://github.com/ethannhzhouu"
+              src="https://github.com/ethannhzhouu/ethan-portfolio"
               className="w-full h-full"
               onLoad={() => setIsGithubLoading(false)}
             />

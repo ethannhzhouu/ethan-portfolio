@@ -9,7 +9,7 @@ interface MailProps {
 
 export default function MailApp({ isDarkMode = true }: MailProps) {
   const textColor = isDarkMode ? "text-white" : "text-gray-800"
-  const bgColor = isDarkMode ? "bg-gray-900" : "bg-white"
+  const bgColor = isDarkMode ? "bg-neutral-800" : "bg-white"
   const hasOpenedRef = useRef(false)
 
   // Redirect to GitHub profile

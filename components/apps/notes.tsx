@@ -9,19 +9,16 @@ interface NotesProps {
 }
 
 export default function Notes({ isDarkMode = true }: NotesProps) {
-  // Update the notes state with enhanced content
   const [notes, setNotes] = useState([
     {
       id: 1,
       title: "About Me",
-      content: `Ethan Zhou
+      content: 
+
+`Ethan Zhou
 
 Hi there...
 Welcome to my portfolio!
-I'm a data science and software engineering enthusiast, 
-who enjoys diving into projects like this one in his free time. 
-I blend analytics, engineering, and project management to build impactful solutions to complex problems. 
-I'm always curious, always learning, and always looking for new ways to create something meaningful.
 
 
 
@@ -71,11 +68,11 @@ Linkedin: https://www.linkedin.com/in/ethannhzhouu/`,
   }
 
   const textColor = isDarkMode ? "text-white" : "text-gray-800"
-  const bgColor = isDarkMode ? "bg-gray-900" : "bg-white"
-  const sidebarBg = isDarkMode ? "bg-gray-800" : "bg-gray-100"
-  const borderColor = isDarkMode ? "border-gray-700" : "border-gray-200"
-  const hoverBg = isDarkMode ? "hover:bg-gray-700" : "hover:bg-gray-200"
-  const selectedBg = isDarkMode ? "bg-gray-700" : "bg-gray-300"
+  const bgColor = isDarkMode ? "bg-neutral-900" : "bg-white"
+  const sidebarBg = isDarkMode ? "bg-neutral-900" : "bg-gray-100"
+  const borderColor = isDarkMode ? "bg-neutral-900" : "border-gray-200"
+  const hoverBg = isDarkMode ? "hover:bg-neutral-700" : "hover:bg-gray-200"
+  const selectedBg = isDarkMode ? "bg-neutral-700" : "bg-gray-300"
 
   return (
     <div className={`flex h-full ${bgColor} ${textColor}`}>

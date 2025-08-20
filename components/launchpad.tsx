@@ -14,6 +14,11 @@ const launchpadApps = [
   { id: "weather", title: "Weather", icon: "/weather.png", component: "Weather" },
   { id: "linkedin", title: "LinkedIn", icon: "/linkedin.png", component: "LinkedIn" },
   { id: "resume", title: "Resume", icon: "/resume.png", component: "Resume" },
+  { id: "snake", title: "Snake", icon: "/snake.png", component: "Snake"},
+  { id: "photos", title: "Photos", icon: "/photos.png", component: "Photos"},
+  { id: "blackjack", title: "Blackjack", icon: "/blackjack.png", component: "Blackjack"},
+  { id: "youtube", title: "Youtube", icon: "/youtube.png", component: "Youtube"},
+  { id: "loldodge", title: "LoLDodge", icon: "/loldodge.png", component: "LoLDodge"},
 ]
 
 interface LaunchpadProps {
@@ -44,7 +49,7 @@ export default function Launchpad({ onAppClick, onClose }: LaunchpadProps) {
       title: app.title,
       component: app.component,
       position: { x: Math.random() * 200 + 100, y: Math.random() * 100 + 50 },
-      size: { width: 800, height: 600 },
+      size: { width: 800, height: 700 },
     })
     onClose()
   }

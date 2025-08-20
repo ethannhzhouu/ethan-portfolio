@@ -4,4 +4,5 @@ export interface AppWindow {
   component: string
   position: { x: number; y: number }
   size: { width: number; height: number }
+  zIndex?: number  // Add this line
 }

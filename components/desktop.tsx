@@ -3,7 +3,6 @@
 import type React from "react"
 
 import { useState, useEffect, useRef } from "react"
-import Notes from "@/components/apps/notes"
 import Dock from "@/components/dock"
 import Menubar from "@/components/menubar"
 import Wallpaper from "@/components/wallpaper"
@@ -42,9 +41,18 @@ export default function Desktop({
       id: "notes",
       title: "Notes",
       component: "Notes", // 
-      position: { x: 26, y: 52 }, // below menubar
-      size: { width: window.innerWidth / 3, height: window.innerHeight - 200 }, // safe default for SSR
-    },
+      position: { x: 52, y: 52 }, // below menubar
+      size: { width: window.innerWidth / 3, height: window.innerHeight - 200 }, 
+    }
+    ,
+      {
+    id: "photos",
+    title: "Photos",
+    component: "Photos",
+    position: { x: 400, y: 700 },
+    size: { width: 384, height: 384},
+    zIndex: 9999 
+  },
   ])
   const [activeWindowId, setActiveWindowId] = useState<string | null>(null)
   const [showLaunchpad, setShowLaunchpad] = useState(false)
