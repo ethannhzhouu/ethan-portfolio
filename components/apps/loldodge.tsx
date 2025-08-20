@@ -37,8 +37,8 @@ export default function loldodge({ isDarkMode = true }: LoLDodgeProps) {
                 priority
               />
             </div>
-            <h2 className="text-xl font-semibold mb-2">Loading LoLDodgeGame...</h2>
-<p className="text-base font-bold text-gray-300 mt-4 max-w-md mx-auto">
+            <h2 className="text-xl font-semibold text-gray-200 mb-2">Loading LoLDodgeGame...</h2>
+<p className="text-base font-bold text-gray-200 mt-4 max-w-md mx-auto">
               Note: LoLDodgeGame was not created by me. All rights belong to their respective owners @ loldodgegame.com.
             </p>
           </div>

@@ -38,3 +38,38 @@ export function AppleIcon({
     </svg>
   )
 }
+
+
+export function SpotlightIcon({ className, color = "currentColor" }: { className?: string; color?: string }) {
+  return (
+    <svg 
+      viewBox="0 0 16 16" 
+      className={className} 
+      fill="none" 
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6.5 2.5a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm-5 4a5 5 0 1 1 9.17 2.83l3.54 3.54a.5.5 0 0 1-.7.7l-3.54-3.54A5 5 0 0 1 1.5 6.5z"
+        fill={color}
+      />
+    </svg>
+  )
+}
+
+export function ControlCenterIcon({ className, color = "currentColor" }: { className?: string; color?: string }) {
+  return (
+    <svg 
+      viewBox="0 0 20 20" 
+      className={className} 
+      fill="none" 
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M9 3H4v5h5V3zM4 2a1 1 0 00-1 1v5a1 1 0 001 1h5a1 1 0 001-1V3a1 1 0 00-1-1H4zm12 0h-5v5h5V2zm1 11v5h-5v-5h5zm1-1a1 1 0 00-1-1h-5a1 1 0 00-1 1v5a1 1 0 001 1h5a1 1 0 001-1v-5zM4 12h5v5H4v-5zm-1-1a1 1 0 011-1h5a1 1 0 011 1v5a1 1 0 01-1 1H4a1 1 0 01-1-1v-5z"
+        fill={color}
+      />
+    </svg>
+  )
+}

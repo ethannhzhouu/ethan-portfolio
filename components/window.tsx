@@ -162,7 +162,7 @@ const toggleMaximize = () => {
     const viewportHeight = document.documentElement.clientHeight
 
     // Calculate available space
-    const MENUBAR_HEIGHT = 26
+    const MENUBAR_HEIGHT = 38
     const DOCK_HEIGHT = 70
 
     // Maximize

@@ -17,7 +17,7 @@ const spotlightApps = [
   { id: "photos", title: "Photos", icon: "/photos.png", component: "Photos"},
   { id: "blackjack", title: "Blackjack", icon: "/blackjack.png", component: "Blackjack"},
   { id: "youtube", title: "Youtube", icon: "/youtube.png", component: "Youtube"},
-  { id: "loldodge", title: "LoLDodge", icon: "/loldodge.png", component: "LoLDodge"},
+  { id: "loldodge", title: "LoLDodge", icon: "/loldodge.png", component: "loldodge"},
 ]
 
 interface SpotlightProps {
@@ -65,14 +65,23 @@ export default function Spotlight({ onClose, onAppClick }: SpotlightProps) {
     }
   }, [searchTerm])
 
+
   const handleAppClick = (app: (typeof spotlightApps)[0]) => {
-    onAppClick({
-      id: app.id,
-      title: app.title,
-      component: app.component,
-      position: { x: Math.random() * 200 + 100, y: Math.random() * 100 + 50 },
-      size: { width: 800, height: 700 },
-    })
+  let size = { width: 800, height: 700 }
+  let position = { x: Math.random() * 200 + 900, y: Math.random() * 100 + 50 }
+
+  if (app.id === "safari") {
+    size = { width: window.innerWidth / 2, height: window.innerHeight - 255}
+    position = { x: 950, y: 52 } 
+  }
+
+  onAppClick({
+    id: app.id,
+    title: app.title,
+    component: app.component,
+    position: position,
+    size: size,
+  })
     onClose()
   }
 

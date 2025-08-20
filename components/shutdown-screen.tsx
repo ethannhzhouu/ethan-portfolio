@@ -34,12 +34,12 @@ export default function ShutdownScreen({ onBoot }: ShutdownScreenProps) {
     <div className="h-screen w-screen bg-black flex flex-col items-center justify-center">
       {showBootText ? (
         <div className="flex flex-col items-center">
-          <AppleIcon className="w-20 h-20 text-white mb-8" />
+          <AppleIcon className="w-40 h-40 text-white mb-12 opacity-80" />
           <p className="text-white text-lg animate-pulse">Press space to boot</p>
         </div>
       ) : (
         <div className="flex flex-col items-center">
-          <p className="text-white text-lg mb-4">Your computer has been shut down</p>
+          <p className="text-white text-lg mb-4">Shutting down ... </p>
           <div className="w-8 h-8 border-t-2 border-white rounded-full animate-spin"></div>
         </div>
       )}

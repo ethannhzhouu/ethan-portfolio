@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 
 interface NotesProps {
@@ -12,17 +11,17 @@ export default function Notes({ isDarkMode = true }: NotesProps) {
   const [notes, setNotes] = useState([
     {
       id: 1,
-      title: "About",
+      title: "about this project",
       content: 
-`Hi there, I'm Ethan. 🙋‍♂️
+`hi there, i'm Ethan. 🙋‍♂️
 
-Welcome to my project! This is a macOS-inspired portfolio website 
-built with Next.js, React.js, TypeScript, and Tailwind CSS.
+welcome to my project! this is a macOS-inspired portfolio website 
+built with Next.js, React.js, TypeScript, and Tailwind
 
-I created this interactive environment to showcase 
-my experience and skills in a unique and engaging way.
+i created this interactive environment to showcase 
+my experience and skills in a unique and engaging way
 
-Navigate through my portfolio as you would on a Mac:
+navigate through my portfolio as you would on a mac:
 
 - menu bar (top left to top right): 
       • last updated date
@@ -48,20 +47,15 @@ Navigate through my portfolio as you would on a Mac:
       • open Safari to see experiences and skills
       • launchpad access to all apps
 
-Feel free to explore my portfolio and get to know me better!
+feel free to explore my portfolio and get to know me better!
 
-Email: xethanhzhou@gmail.com
-LinkedIn: https://www.linkedin.com/in/ethannhzhouu/
-
-Built with 🧋 and 😴.
+built with 🍵 and 😴.
 `,
-
-
       date: "Today, 4:31 AM",
     },
     {
       id: 2,
-      title: "Apps",
+      title: "apps",
       content: `mac-inspired portfolio apps:
 built with TypeScript and React
 
@@ -97,7 +91,17 @@ Media & Entertainment
 • blackjack: try to reach as close to 21 versus the dealer
 
 • loldodge: links to loldodgegame, dodge and attack enemies
+`,
+      date: "Yesterday, 1:20 AM",
+    },
+    {
+      id: 3,
+      title: "about me",
+      content: `what i like to do for fun:
 
+
+email: xethanhzhou@gmail.com
+LinkedIn: https://www.linkedin.com/in/ethannhzhouu/
 `,
       date: "Yesterday, 1:20 AM",
     },
@@ -119,7 +123,6 @@ Media & Entertainment
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setEditableContent(e.target.value)
 
-    // Update the note content
     setNotes(
       notes.map((note) => {
         if (note.id === selectedNoteId) {
@@ -158,6 +161,19 @@ Media & Entertainment
               </p>
             </div>
           ))}
+        </div>
+
+        {/* Contact information */}
+        <div className={`p-3 border-t ${isDarkMode ? "border-neutral-100" : "border-gray-200"}`}>
+          <div className="text-xs space-y-1">
+            <p className={`${isDarkMode ? "text-gray-400" : "text-gray-600"}`}>Contact me 😊</p>
+            <a 
+              href="mailto:xethanhzhou@gmail.com"
+              className="block text-neutral-500 hover:underline"
+            >
+              xethanhzhou@gmail.com
+            </a>
+          </div>
         </div>
       </div>
 

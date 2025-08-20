@@ -65,14 +65,14 @@ export default function ControlCenter({
   }
 
   return (
-    <div 
-      className="fixed top-1 right-1 w-80 bg-white/10 dark:bg-neutral-800/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/50 overflow-hidden"
-      onClick={(e) => e.stopPropagation()}
-    >
+<div 
+  className="fixed top-9 right-12 w-80 bg-white/10 dark:bg-neutral-800/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/50 overflow-hidden z-[9999]"
+  onClick={(e) => e.stopPropagation()}
+>
     {/* Top spacing */}
-    <div className="pt-5" />
+    <div className="pt-2" />
     
-    <div className="p-4 space-y-4">
+    <div className="p-4 pt-2 space-y-4">
 
 
         {/* Display & Theme Controls */}
@@ -94,7 +94,7 @@ export default function ControlCenter({
 
           <button
             onClick={onToggleDarkMode}
-            className="w-full flex items-center justify-between p-3 rounded-xl bg-neutral-100 dark:bg-neutral-700/50 hover:bg-neutral-200 dark:hover:bg-neutral-700/70"
+            className="w-full flex items-center justify-between p-3 rounded-xl bg-gray-300 dark:bg-neutral-700/50 hover:bg-neutral-200 dark:hover:bg-neutral-700/70"
           >
             <span className="text-sm text-gray-700 dark:text-white/90">Theme</span>
             {isDarkMode ? 
@@ -104,14 +104,14 @@ export default function ControlCenter({
           </button>
         </div>
 
-        {/* Quick Settings Grid */}
+        {}
         <div className="grid grid-cols-2 gap-3">
           <button
             onClick={toggleWifi}
             className={`flex items-center justify-between p-3 rounded-xl transition-colors ${
               wifiEnabled 
                 ? "bg-blue-500 hover:bg-blue-600" 
-                : "bg-gray-100 dark:bg-neutral-700/50 hover:bg-gray-200 dark:hover:bg-gray-700/70"
+                : "bg-gray-300 dark:bg-neutral-700/50 hover:bg-gray-200 dark:hover:bg-gray-700/70"
             }`}
           >
             <span className={`text-sm ${wifiEnabled ? "text-white" : "text-gray-700 dark:text-white/90"}`}>
@@ -125,7 +125,7 @@ export default function ControlCenter({
             className={`flex items-center justify-between p-3 rounded-xl transition-colors ${
               bluetoothEnabled 
                 ? "bg-blue-500 hover:bg-blue-600" 
-                : "bg-gray-100 dark:bg-neutral-700/50 hover:bg-gray-200 dark:hover:bg-gray-700/70"
+                : "bg-gray-300 dark:bg-neutral-700/50 hover:bg-gray-200 dark:hover:bg-gray-700/70"
             }`}
           >
             <span className={`text-sm ${bluetoothEnabled ? "text-white" : "text-gray-700 dark:text-white/90"}`}>
@@ -141,7 +141,7 @@ export default function ControlCenter({
           className={`w-full flex items-center justify-between p-3 rounded-xl transition-colors ${
             isFullscreen 
               ? "bg-blue-500 hover:bg-blue-600" 
-              : "bg-gray-100 dark:bg-neutral-700/50 hover:bg-gray-200 dark:hover:bg-gray-700/70"
+              : "bg-gray-300 dark:bg-neutral-700/50 hover:bg-gray-200 dark:hover:bg-gray-700/70"
           }`}
         >
           <span className={`text-sm ${isFullscreen ? "text-white" : "text-gray-700 dark:text-white/90"}`}>

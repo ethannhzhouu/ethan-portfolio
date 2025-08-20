@@ -42,14 +42,14 @@ export default function Desktop({
       title: "Notes",
       component: "Notes", // 
       position: { x: 52, y: 52 }, // below menubar
-      size: { width: window.innerWidth / 3, height: window.innerHeight - 200 }, 
+      size: { width: window.innerWidth / 3, height: window.innerHeight - 255 }, 
     }
     ,
       {
     id: "photos",
     title: "Photos",
     component: "Photos",
-    position: { x: 55, y: 350},
+    position: { x: 55, y: 500},
     size: { width: 250, height: 300},
     zIndex: 9999 
   },

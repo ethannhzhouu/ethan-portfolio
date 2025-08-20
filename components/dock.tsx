@@ -64,13 +64,21 @@ export default function Dock({ onAppClick, onLaunchpadClick, activeAppIds, isDar
       return
     }
 
-    onAppClick({
-      id: app.id,
-      title: app.title,
-      component: app.component,
-      position: { x: Math.random() * 200 + 100, y: Math.random() * 100 + 50 },
-      size: { width: 800, height: 700 },
-    })
+  let size = { width: 800, height: 700 }
+  let position = { x: Math.random() * 200 + 900, y: Math.random() * 100 + 50 }
+
+  if (app.id === "safari") {
+    size = { width: window.innerWidth / 2, height: window.innerHeight - 255}
+    position = { x: 950, y: 52 } 
+  }
+
+  onAppClick({
+    id: app.id,
+    title: app.title,
+    component: app.component,
+    position: position,
+    size: size,
+  })
 
     // Close mobile menu after clicking an app
     if (showMobileMenu) {
@@ -123,11 +131,14 @@ export default function Dock({ onAppClick, onLaunchpadClick, activeAppIds, isDar
     <div ref={dockRef} className="fixed bottom-2 left-1/2 transform -translate-x-1/2 z-50">
       {/* Mobile expanded menu */}
       {isMobile && showMobileMenu && (
-        <div
-          className={`absolute bottom-20 left-1/2 transform -translate-x-1/2 w-[280px] 
-          ${isDarkMode ? "bg-neutral-800/90" : "bg-white/90"} backdrop-blur-xl 
-          rounded-xl border border-white/20 shadow-lg p-4 mb-2`}
-        >
+  <div
+    className={`absolute bottom-20 left-1/2 transform -translate-x-1/2 w-[280px] 
+    ${isDarkMode 
+      ? "bg-neutral-900/30 border-neutral-800/30" 
+      : "bg-white/90 border-white/20"} 
+    backdrop-blur-lg
+    rounded-xl border shadow-2xl p-4 mb-2`}
+  >
           <div className="grid grid-cols-4 gap-4">
             {hiddenApps.map((app) => (
               <div
@@ -152,14 +163,17 @@ export default function Dock({ onAppClick, onLaunchpadClick, activeAppIds, isDar
       )}
 
       {/* Main dock */}
-      <div
-        className={`px-3 py-2 rounded-2xl 
-          ${isDarkMode ? "bg-white/10" : "bg-white/60"} backdrop-blur-xl 
-          flex items-end border border-white/20 shadow-lg
-          ${isMobile ? "h-20" : "h-16"}`}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-      >
+<div
+  className={`px-3 py-2 rounded-2xl 
+    ${isDarkMode 
+      ? "bg-neutral-900/30 border-neutral-800/30" 
+      : "bg-white/60 border-white/20"} 
+    backdrop-blur-lg
+    flex items-end shadow-2xl border
+    ${isMobile ? "h-20" : "h-16"}`}
+  onMouseMove={handleMouseMove}
+  onMouseLeave={handleMouseLeave}
+>
         {visibleApps.map((app, index) => {
           const scale = getIconScale(index, visibleApps.length)
 
@@ -190,22 +204,22 @@ export default function Dock({ onAppClick, onLaunchpadClick, activeAppIds, isDar
                 />
 
                 {}
-                {!isMobile && scale > 1.5 && (
+{!isMobile && scale > 1.5 && (
   <div 
     className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 
-    bg-neutral/70 text-white text-xs rounded whitespace-nowrap z-50"
+    bg-neutral-900/70 text-white/90 text-xs rounded-lg whitespace-nowrap z-50"
     style={{
-      pointerEvents: 'none',  // Prevent tooltip from interfering with hover
+      pointerEvents: 'none',
     }}
   >
     {app.title}
   </div>
-                )}
+)}
 
                 {}
-                {activeAppIds.includes(app.id) && (
-                  <div className="absolute bottom-[-5px] left-1/2 transform -translate-x-1/2 w-1 h-1 bg-white rounded-full"></div>
-                )}
+{activeAppIds.includes(app.id) && (
+  <div className="absolute bottom-[-5px] left-1/2 transform -translate-x-1/2 w-1 h-1 bg-white/70 rounded-full"></div>
+)}
               </div>
             </div>
           )

@@ -1,9 +1,9 @@
 "use client"
 
 import type React from "react"
-
+import { SpotlightIcon } from "@/components/icons"
+import { ControlCenterIcon } from "@/components/icons"
 import { useState, useRef, useEffect } from "react"
-import { Search } from "lucide-react"
 import { AppleIcon } from "@/components/icons"
 
 
@@ -38,36 +38,33 @@ export default function Menubar({
   const menuRef = useRef<HTMLDivElement>(null)
   const wifiRef = useRef<HTMLDivElement>(null)
 
-  const formattedTime = time.toLocaleString("en-US", {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: true,
-  })
+const formattedTime = time.toLocaleString("en-US", {
+  weekday: "long",
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  hour: "numeric",
+  minute: "2-digit",
+  second: "2-digit",
+  hour12: true,
+}).replace(',', ' •').replace('at', ' •').replace('PM', 'ᴘᴍ').replace('AM', 'ᴀᴍ')
 
   useEffect(() => {
-    // Try to get battery information if available
     if ("getBattery" in navigator) {
       // @ts-ignore - getBattery is not in the standard navigator type
       navigator
         .getBattery()
         .then((battery: any) => {
           updateBatteryStatus(battery)
-
-          // Listen for battery status changes
           battery.addEventListener("levelchange", () => updateBatteryStatus(battery))
           battery.addEventListener("chargingchange", () => updateBatteryStatus(battery))
         })
         .catch(() => {
-          // If there's an error, default to 100%
           setBatteryLevel(100)
           setIsCharging(false)
         })
     }
 
-    // Load WiFi state from localStorage
     const savedWifi = localStorage.getItem("wifiEnabled")
     if (savedWifi !== null) {
       setWifiEnabled(savedWifi === "true")
@@ -125,36 +122,36 @@ export default function Menubar({
   return (
     <div
       ref={menuRef}
-      className={`fixed top-0 left-0 right-0 h-6 ${menuBgClass} z-50 flex items-center px-4 ${textClass} text-sm`}
+      className={`fixed top-0 left-0 right-0 h-10 ${menuBgClass} z-50 flex items-center px-4 ${textClass} text-sm`}
     >
       <div className="flex-1 flex items-center">
         <button
-          className="flex items-center mr-4 hover:bg-white/10 px-2 py-0.5 rounded"
+          className="flex items-center mr-4 hover:bg-white/10 px-2 py-1 rounded"
           onClick={() => toggleMenu("apple")}
         >
 <AppleIcon
   className="w-5 h-5"
-  fillColor={isDarkMode ? "white" : "black"} // white in dark mode, black in light mode
+  fillColor={isDarkMode ? "white" : "black"}
 />
 
         </button>
 
         {activeMenu === "apple" && (
-          <div className={`absolute top-6 left-2 ${dropdownBgClass} rounded-lg shadow-xl ${textClass} py-1 w-56`}>
+          <div className={`absolute top-9 left-3 ${dropdownBgClass} rounded-lg shadow-xl ${textClass} py-1 w-56`}>
             <button className={`w-full text-left px-4 py-1 ${hoverClass}`}>Last Updated: 8/18/2025</button>
-            <div className="border-t border-gray-700 my-1"></div>
+            <div className="border-t border-neutral-700 my-1"></div>
             <button className={`w-full text-left px-4 py-1 ${hoverClass}`} onClick={onSleep}>
               Sleep
             </button>
             <button className={`w-full text-left px-4 py-1 ${hoverClass}`} onClick={onRestart}>
-              Restart...
+              Restart
             </button>
             <button className={`w-full text-left px-4 py-1 ${hoverClass}`} onClick={onShutdown}>
-              Shut Down...
+              Shut Down
             </button>
-            <div className="border-t border-gray-700 my-1"></div>
+            <div className="border-t border-neutral-700 my-1"></div>
             <button className={`w-full text-left px-4 py-1 ${hoverClass}`} onClick={onLogout}>
-              Log Out Ethan...
+              Log Out Ethan
             </button>
           </div>
         )}
@@ -206,23 +203,20 @@ export default function Menubar({
           )}
         </div>
 
-        <button onClick={onSpotlightClick}>
-          <Search className="w-4 h-4" />
+        <button onClick={onSpotlightClick} className="hover:bg-neutral-800 p-1.5 rounded-sm">
+            <SpotlightIcon className="w-3.5 h-3.5" color={isDarkMode ? "white" : "black"} />
         </button>
 
-        <button onClick={onControlCenterClick} className="flex items-center justify-center">
-          <img
-            src="/control-center-icon.webp"
-            alt="Control Center"
-            className="w-4 h-4"
-            style={{
-              filter: isDarkMode ? "invert(1)" : "none",
-              opacity: 0.9,
-            }}
-          />
-        </button>
+<button 
+  onClick={onControlCenterClick} 
+  className="hover:bg-neutral-800 p-1.5 rounded-sm"
+>
+  <ControlCenterIcon className="w-4 h-4" color={isDarkMode ? "white" : "black"} />
+</button>
 
-        <span>{formattedTime}</span>
+<span className="font-medium tracking-wide">
+  {formattedTime}
+</span>
       </div>
     </div>
   )
