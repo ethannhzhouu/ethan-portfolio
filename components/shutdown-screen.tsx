@@ -11,7 +11,7 @@ export default function ShutdownScreen({ onBoot }: ShutdownScreenProps) {
   const [showBootText, setShowBootText] = useState(false)
 
   useEffect(() => {
-    // Show the "Click to boot" text after a delay
+    // Show the "Press space to boot" text after a delay
     const timer = setTimeout(() => {
       setShowBootText(true)
     }, 3000)
@@ -19,15 +19,23 @@ export default function ShutdownScreen({ onBoot }: ShutdownScreenProps) {
     return () => clearTimeout(timer)
   }, [])
 
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.code === 'Space' && showBootText) {
+        onBoot();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [onBoot, showBootText]);
+
   return (
-    <div
-      className="h-screen w-screen bg-black flex flex-col items-center justify-center cursor-pointer"
-      onClick={onBoot}
-    >
+    <div className="h-screen w-screen bg-black flex flex-col items-center justify-center">
       {showBootText ? (
         <div className="flex flex-col items-center">
           <AppleIcon className="w-20 h-20 text-white mb-8" />
-          <p className="text-white text-lg animate-pulse">Click to boot</p>
+          <p className="text-white text-lg animate-pulse">Press space to boot</p>
         </div>
       ) : (
         <div className="flex flex-col items-center">

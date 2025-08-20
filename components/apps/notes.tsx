@@ -12,31 +12,94 @@ export default function Notes({ isDarkMode = true }: NotesProps) {
   const [notes, setNotes] = useState([
     {
       id: 1,
-      title: "About Me",
+      title: "About",
       content: 
+`Hi there, I'm Ethan. 🙋‍♂️
 
-`Ethan Zhou
+Welcome to my project! This is a macOS-inspired portfolio website 
+built with Next.js, React.js, TypeScript, and Tailwind CSS.
 
-Hi there...
-Welcome to my portfolio!
+I created this interactive environment to showcase 
+my experience and skills in a unique and engaging way.
 
+Navigate through my portfolio as you would on a Mac:
 
+- menu bar (top left to top right): 
+      • last updated date
+      • sleep / restart / shutdown / logout
+      • name of currently focused app
+      • battery display
+      • spotlight search
+      • control center
+      • time display
 
-### Contact
+- control center (top right): 
+      • toggle light and dark theme
+      • brightness slider
+      • wi-fi button (disabling wi-fi will disconnect safari)
+      • bluetooth button (for aesthetic, no functionality)
+      • enter fullscreen
+
+- spotlight (top right): 
+      • access to all apps
+
+- dock (bottom):
+      • contains most important apps for my portfolio
+      • open Safari to see experiences and skills
+      • launchpad access to all apps
+
+Feel free to explore my portfolio and get to know me better!
+
 Email: xethanhzhou@gmail.com
-GitHub: github.com/ethannhzhouu
-Linkedin: https://www.linkedin.com/in/ethannhzhouu/`,
-      date: "Today, 10:30 AM",
+LinkedIn: https://www.linkedin.com/in/ethannhzhouu/
+
+Built with 🧋 and 😴.
+`,
+
+
+      date: "Today, 4:31 AM",
     },
     {
       id: 2,
-      title: "Filler for now",
-      content: `# Filler
+      title: "Apps",
+      content: `mac-inspired portfolio apps:
+built with TypeScript and React
+
+Productivity & Social
+• launchpad: customizable app launcher inspired by macOS
+
+• safari: opens a website about my experiences and skills
+
+• mail: opens gmail in a new tab
+
+• notes: note-taking for project details
+
+• terminal: interactive command-line interface
+
+• github: direct access to project source code
+
+• linkedin: professional profile with experience
+
+• resume: opens my resume with a downloadable PDF
 
 
+Media & Entertainment
+• music: music player featuring 3 songs I'm listening to right now
 
-## `,
-      date: "Yesterday, 3:15 PM",
+• photos: 3 picture click slideshow of me
+
+• youtube: links to youtube where you can watch videos
+
+• weather: app with animated particles and mock weather data
+
+• snake: classic snake arcade game
+
+• blackjack: try to reach as close to 21 versus the dealer
+
+• loldodge: links to loldodgegame, dodge and attack enemies
+
+`,
+      date: "Yesterday, 1:20 AM",
     },
   ])
 
@@ -77,7 +140,7 @@ Linkedin: https://www.linkedin.com/in/ethannhzhouu/`,
   return (
     <div className={`flex h-full ${bgColor} ${textColor}`}>
       {/* Sidebar */}
-      <div className={`w-64 ${sidebarBg} border-r ${borderColor} flex flex-col`}>
+      <div className={`w-64 ${sidebarBg} border-r ${borderColor} flex flex-col min-h-0`}>
         <div className="p-3 border-b border-gray-700 flex justify-between items-center">
           <h2 className="font-medium">Notes</h2>
         </div>
@@ -99,16 +162,16 @@ Linkedin: https://www.linkedin.com/in/ethannhzhouu/`,
       </div>
 
       {/* Note content */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col min-h-0">
         {selectedNote && (
           <>
             <div className={`p-3 border-b ${borderColor}`}>
               <h2 className="font-medium">{selectedNote.title}</h2>
               <p className="text-xs text-gray-500">{selectedNote.date}</p>
             </div>
-            <div className="flex-1 p-4 overflow-auto">
+            <div className="flex-1 p-4 overflow-hidden pr-1">
               <textarea
-                className={`w-full h-full resize-none ${bgColor} ${textColor} focus:outline-none`}
+                className={`w-full h-full resize-none ${bgColor} ${textColor} focus:outline-none overflow-auto`}
                 value={selectedNote.content}
                 onChange={handleContentChange}
               />

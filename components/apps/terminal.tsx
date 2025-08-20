@@ -153,7 +153,6 @@ export default function Terminal({ isDarkMode = true}: TerminalProps) {
             "• HTML / CSS",
             "",
             "Frameworks & Technologies:",
-            "• Node.js",
             "• React.js",
             "• Next.js",
             "• Tailwind CSS",

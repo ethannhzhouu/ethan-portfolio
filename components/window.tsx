@@ -78,7 +78,7 @@ export default function Window({ window, isActive, onClose, onFocus, isDarkMode 
         let newY = dragOffset.y
 
         // Minimum window dimensions
-        const minWidth = 300
+        const minWidth = 200
         const minHeight = 200
 
         if (resizeDirection.includes("e")) {

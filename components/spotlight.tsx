@@ -79,7 +79,7 @@ export default function Spotlight({ onClose, onAppClick }: SpotlightProps) {
   return (
     <div className="fixed inset-0 bg-transparent z-40 flex items-center justify-center" onClick={onClose}>
       <div
-        className="w-full max-w-2xl bg-gray-800/80 backdrop-blur-xl rounded-xl overflow-hidden shadow-2xl"
+        className="w-full max-w-2xl bg-neutral-800/80 backdrop-blur-xl rounded-xl overflow-hidden shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="relative">

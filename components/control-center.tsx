@@ -6,11 +6,9 @@ import {
   Bluetooth, 
   Moon, 
   Sun, 
-  Volume2, 
-  VolumeX, 
+
   Maximize,
-  MinusIcon,
-  PlusIcon 
+ 
 } from "lucide-react"
 
 interface ControlCenterProps {
@@ -68,7 +66,7 @@ export default function ControlCenter({
 
   return (
     <div 
-      className="fixed top-1 right-1 w-80 bg-white/10 dark:bg-gray-800/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/50 overflow-hidden"
+      className="fixed top-1 right-1 w-80 bg-white/10 dark:bg-neutral-800/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/50 overflow-hidden"
       onClick={(e) => e.stopPropagation()}
     >
     {/* Top spacing */}
@@ -90,13 +88,13 @@ export default function ControlCenter({
               max="100"
               value={brightness}
               onChange={(e) => onBrightnessChange(Number(e.target.value))}
-              className="w-full h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full appearance-none cursor-pointer"
+              className="w-full h-1.5 bg-neutral-200 dark:bg-neutral-700 rounded-full appearance-none cursor-pointer"
             />
           </div>
 
           <button
             onClick={onToggleDarkMode}
-            className="w-full flex items-center justify-between p-3 rounded-xl bg-gray-100 dark:bg-gray-700/50 hover:bg-gray-200 dark:hover:bg-gray-700/70"
+            className="w-full flex items-center justify-between p-3 rounded-xl bg-neutral-100 dark:bg-neutral-700/50 hover:bg-neutral-200 dark:hover:bg-neutral-700/70"
           >
             <span className="text-sm text-gray-700 dark:text-white/90">Theme</span>
             {isDarkMode ? 
@@ -113,7 +111,7 @@ export default function ControlCenter({
             className={`flex items-center justify-between p-3 rounded-xl transition-colors ${
               wifiEnabled 
                 ? "bg-blue-500 hover:bg-blue-600" 
-                : "bg-gray-100 dark:bg-gray-700/50 hover:bg-gray-200 dark:hover:bg-gray-700/70"
+                : "bg-gray-100 dark:bg-neutral-700/50 hover:bg-gray-200 dark:hover:bg-gray-700/70"
             }`}
           >
             <span className={`text-sm ${wifiEnabled ? "text-white" : "text-gray-700 dark:text-white/90"}`}>
@@ -127,7 +125,7 @@ export default function ControlCenter({
             className={`flex items-center justify-between p-3 rounded-xl transition-colors ${
               bluetoothEnabled 
                 ? "bg-blue-500 hover:bg-blue-600" 
-                : "bg-gray-100 dark:bg-gray-700/50 hover:bg-gray-200 dark:hover:bg-gray-700/70"
+                : "bg-gray-100 dark:bg-neutral-700/50 hover:bg-gray-200 dark:hover:bg-gray-700/70"
             }`}
           >
             <span className={`text-sm ${bluetoothEnabled ? "text-white" : "text-gray-700 dark:text-white/90"}`}>
@@ -143,7 +141,7 @@ export default function ControlCenter({
           className={`w-full flex items-center justify-between p-3 rounded-xl transition-colors ${
             isFullscreen 
               ? "bg-blue-500 hover:bg-blue-600" 
-              : "bg-gray-100 dark:bg-gray-700/50 hover:bg-gray-200 dark:hover:bg-gray-700/70"
+              : "bg-gray-100 dark:bg-neutral-700/50 hover:bg-gray-200 dark:hover:bg-gray-700/70"
           }`}
         >
           <span className={`text-sm ${isFullscreen ? "text-white" : "text-gray-700 dark:text-white/90"}`}>

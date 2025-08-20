@@ -8,7 +8,7 @@ interface SafariProps {
 }
 
 export default function Safari({ isDarkMode = true }: SafariProps) {
-  const [url, setUrl] = useState("https://ethannhzhouu.dev")
+  const [url, setUrl] = useState("https://ethannhzhouu.github.io")
   const [isLoading, setIsLoading] = useState(false)
   const [activeTab, setActiveTab] = useState("home")
   const [wifiEnabled, setWifiEnabled] = useState(true)
@@ -95,7 +95,7 @@ export default function Safari({ isDarkMode = true }: SafariProps) {
     },
   ]
 
-  // Add a no internet connection view
+  // no internet connection
   const NoInternetView = () => (
     <div className="flex flex-col items-center justify-center h-full p-8">
       <div

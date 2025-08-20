@@ -49,8 +49,8 @@ export default function Desktop({
     id: "photos",
     title: "Photos",
     component: "Photos",
-    position: { x: 400, y: 700 },
-    size: { width: 384, height: 384},
+    position: { x: 55, y: 350},
+    size: { width: 250, height: 300},
     zIndex: 9999 
   },
   ])

@@ -9,7 +9,7 @@ interface PhotosProps {
 
 export default function Photos({ isDarkMode = true }: PhotosProps) {
   const textColor = isDarkMode ? "text-white" : "text-neutral-800"
-  const bgColor = isDarkMode ? "bg-neutral-900" : "bg-white"
+  const bgColor = isDarkMode ? "bg-neutral-900" : "bg-white-900"
   const [isLoading, setIsLoading] = useState(true)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
@@ -60,7 +60,7 @@ export default function Photos({ isDarkMode = true }: PhotosProps) {
           style={{
             objectPosition: 'center',
             backgroundSize: 'contain',
-            backgroundColor: isDarkMode ? 'rgb(23, 23, 23)' : 'rgb(255 255 255)'
+            backgroundColor: isDarkMode ? 'rgb(23, 23, 23)' : 'rgb(212, 212, 212)'
           }}
         />
       </div>

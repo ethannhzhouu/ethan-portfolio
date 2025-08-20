@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useRef, useEffect } from "react"
 import { MoreHorizontal } from "lucide-react"
 import type { AppWindow } from "@/types"
@@ -9,7 +8,6 @@ import type { AppWindow } from "@/types"
 const dockApps = [
   { id: "launchpad", title: "Launchpad", icon: "/launchpad.png", component: "Launchpad", isSystem: true },
   { id: "safari", title: "Safari", icon: "/safari.png", component: "Safari" },
-  { id: "weather", title: "Weather", icon: "/weather.png", component: "Weather" },
   { id: "notes", title: "Notes", icon: "/notes.png", component: "Notes" },
   { id: "terminal", title: "Terminal", icon: "/terminal.png", component: "Terminal" },
   { id: "music", title: "Music", icon: "/music.png", component: "Music" },
@@ -17,7 +15,6 @@ const dockApps = [
   { id: "resume", title: "Resume", icon: "/resume.png", component: "Resume" },
   { id: "github", title: "GitHub", icon: "/github.png", component: "GitHub" },
   { id: "photos", title: "Photos", icon: "/photos.png", component: "Photos"},
-  { id: "loldodge", title: "LoLDodge", icon: "/loldodge.png", component: "loldodge"},
 ]
 
 interface DockProps {
@@ -106,7 +103,7 @@ export default function Dock({ onAppClick, onLaunchpadClick, activeAppIds, isDar
     const distance = Math.abs(mouseX - iconPosition)
 
     // Maximum scale and distance influence
-    const maxScale = 2
+    const maxScale = 1.6
     const maxDistance = iconWidth * 2.5
 
     // Calculate scale based on distance (closer = larger)
@@ -128,7 +125,7 @@ export default function Dock({ onAppClick, onLaunchpadClick, activeAppIds, isDar
       {isMobile && showMobileMenu && (
         <div
           className={`absolute bottom-20 left-1/2 transform -translate-x-1/2 w-[280px] 
-          ${isDarkMode ? "bg-gray-800/90" : "bg-white/90"} backdrop-blur-xl 
+          ${isDarkMode ? "bg-neutral-800/90" : "bg-white/90"} backdrop-blur-xl 
           rounded-xl border border-white/20 shadow-lg p-4 mb-2`}
         >
           <div className="grid grid-cols-4 gap-4">
@@ -192,14 +189,20 @@ export default function Dock({ onAppClick, onLaunchpadClick, activeAppIds, isDar
                   draggable="false"
                 />
 
-                {/* Tooltip - only on desktop */}
+                {}
                 {!isMobile && scale > 1.5 && (
-                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-1 px-2 py-1 bg-black/70 text-white text-xs rounded whitespace-nowrap">
-                    {app.title}
-                  </div>
+  <div 
+    className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 
+    bg-neutral/70 text-white text-xs rounded whitespace-nowrap z-50"
+    style={{
+      pointerEvents: 'none',  // Prevent tooltip from interfering with hover
+    }}
+  >
+    {app.title}
+  </div>
                 )}
 
-                {/* Indicator dot for active apps */}
+                {}
                 {activeAppIds.includes(app.id) && (
                   <div className="absolute bottom-[-5px] left-1/2 transform -translate-x-1/2 w-1 h-1 bg-white rounded-full"></div>
                 )}
@@ -208,7 +211,7 @@ export default function Dock({ onAppClick, onLaunchpadClick, activeAppIds, isDar
           )
         })}
 
-        {/* More button for mobile */}
+        {}
         {isMobile && (
           <div
             className="flex flex-col items-center justify-end h-full px-3"
@@ -217,7 +220,7 @@ export default function Dock({ onAppClick, onLaunchpadClick, activeAppIds, isDar
             <div className="relative cursor-pointer">
               <div
                 className={`w-14 h-14 rounded-full flex items-center justify-center 
-                ${isDarkMode ? "bg-gray-700" : "bg-gray-200"} 
+                ${isDarkMode ? "bg-neutral-700" : "bg-gray-200"} 
                 ${showMobileMenu ? (isDarkMode ? "bg-blue-700" : "bg-blue-200") : ""}`}
               >
                 <MoreHorizontal className={`w-8 h-8 ${isDarkMode ? "text-white" : "text-gray-800"}`} />

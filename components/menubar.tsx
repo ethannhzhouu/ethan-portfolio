@@ -118,7 +118,7 @@ export default function Menubar({
   }
 
   const menuBgClass = isDarkMode ? "bg-black/40 backdrop-blur-md" : "bg-white/20 backdrop-blur-md"
-  const dropdownBgClass = isDarkMode ? "bg-gray-800/90 backdrop-blur-md" : "bg-gray-200/90 backdrop-blur-md"
+  const dropdownBgClass = isDarkMode ? "bg-neutral-800/90 backdrop-blur-md" : "bg-neutral-200/90 backdrop-blur-md"
   const textClass = isDarkMode ? "text-white" : "text-gray-800"
   const hoverClass = isDarkMode ? "hover:bg-blue-600" : "hover:bg-blue-400"
 
@@ -169,7 +169,7 @@ export default function Menubar({
         )}
       </div>
 
-<div className="flex items-center space-x-3">
+<div className="flex items-center space-x-3"> {}
   <div className="relative">
     <div 
       className={`w-12 h-5 rounded-[3px] border border-current flex items-center 
@@ -184,45 +184,12 @@ export default function Menubar({
           {batteryLevel}%
         </span>
       </div>
-      {/* ...existing charging indicator code... */}
     </div>
     <div className="absolute -right-[2px] top-1/2 -translate-y-1/2 w-[2px] h-3 bg-current rounded-r-sm" />
   </div>
 
 
         <div className="relative">
-          <button className="wifi-icon" onClick={toggleWifiPopup}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-5 h-5"
-            >
-              {wifiEnabled ? (
-                <>
-                  <path d="M5 12.55a11 11 0 0 1 14.08 0" />
-                  <path d="M1.42 9a16 16 0 0 1 21.16 0" />
-                  <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
-                  <circle cx="12" cy="20" r="1" />
-                </>
-              ) : (
-                <>
-                  <line x1="1" y1="1" x2="23" y2="23" />
-                  <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55" />
-                  <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39" />
-                  <path d="M10.71 5.05A16 16 0 0 1 22.58 9" />
-                  <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88" />
-                  <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
-                  <circle cx="12" cy="20" r="1" />
-                </>
-              )}
-            </svg>
-          </button>
-
           {showWifiToggle && (
             <div
               ref={wifiRef}
@@ -232,7 +199,7 @@ export default function Menubar({
                 <span className="font-medium">Wi-Fi</span>
                 <label className="relative inline-flex items-center cursor-pointer">
                   <input type="checkbox" checked={wifiEnabled} onChange={toggleWifi} className="sr-only peer" />
-                  <div className="w-11 h-6 bg-gray-500 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500"></div>
+                  <div className="w-11 h-6 bg-neutral peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-500"></div>
                 </label>
               </div>
             </div>
