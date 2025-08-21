@@ -120,57 +120,60 @@ export default function Blackjack() {
   const placeBet = (amount: number) => {
     if (amount <= money && amount > 0) {
       setCurrentBet(amount)
-      setMoney(money - amount)
+      const remainingMoney = money - amount
+      setMoney(remainingMoney)
       animateMoney("bet")
-      dealInitialCards()
+      // Pass both the bet amount and remaining money to deal cards
+      dealInitialCards(amount, remainingMoney)
     }
   }
 
+  const dealInitialCards = (betAmount: number, remainingMoney: number) => {
+    const newDeck = [...deck]
+    
+    const playerHand = [newDeck.pop()!, newDeck.pop()!]
+    const dealerHand = [newDeck.pop()!, newDeck.pop()!]
 
-const dealInitialCards = () => {
-  const newDeck = [...deck]
-  
-  const playerHand = [newDeck.pop()!, newDeck.pop()!]
-  const dealerHand = [newDeck.pop()!, newDeck.pop()!]
+    setPlayerCards(playerHand)
+    setDealerCards(dealerHand)
+    setDeck(newDeck)
+    setGameState("playing")
+    setCanHit(true)
+    setCanStand(true)
+    // Fix: Use remainingMoney for double down eligibility
+    setCanDoubleDown(playerHand.length === 2 && remainingMoney >= betAmount)
+    setShowDealerHole(false)
+    setMessage("Hit or Stand?")
 
-  setPlayerCards(playerHand)
-  setDealerCards(dealerHand)
-  setDeck(newDeck)
-  setGameState("playing")
-  setCanHit(true)
-  setCanStand(true)
-  setCanDoubleDown(playerHand.length === 2 && money >= currentBet)
-  setShowDealerHole(false)
-  setMessage("Hit or Stand?")
+    playerHand.forEach(card => animateCard(card.id))
+    dealerHand.forEach(card => animateCard(card.id))
 
-  playerHand.forEach(card => animateCard(card.id))
-  dealerHand.forEach(card => animateCard(card.id))
+    const playerBJ = calculateTotal(playerHand) === 21
+    const dealerBJ = calculateTotal(dealerHand) === 21
 
-  const playerBJ = calculateTotal(playerHand) === 21
-  const dealerBJ = calculateTotal(dealerHand) === 21
-
-  if (playerBJ || dealerBJ) {
-    setTimeout(() => {
-      setShowDealerHole(true)
-      if (playerBJ && dealerBJ) {
-        setMessage("🤝 Both have Blackjack! It's a push!")
-        setMoney(prev => prev + currentBet) // Return the bet
-      } else if (playerBJ) {
-        setMessage("🎊 BLACKJACK!")
-        // Return bet + blackjack payout (bet * 2.5 total)
-        setMoney(prev => prev + currentBet + Math.floor(currentBet * 1.5))
-        animateMoney("win")
-      } else {
-        setMessage("Dealer has Blackjack!")
-        // Money stays the same (bet already deducted)
-      }
-      setGameState("finished")
-      setCanHit(false)
-      setCanStand(false)
-      setCanDoubleDown(false)
-    }, 1000)
+    if (playerBJ || dealerBJ) {
+      setTimeout(() => {
+        setShowDealerHole(true)
+        if (playerBJ && dealerBJ) {
+          setMessage("Both have Blackjack! It's a push!")
+          setMoney(remainingMoney + betAmount) // Return the bet
+        } else if (playerBJ) {
+          setMessage("BLACKJACK!")
+          // Blackjack pays 3:2, so total return = bet + (bet * 1.5)
+          const blackjackPayout = betAmount + Math.floor(betAmount * 1.5)
+          setMoney(remainingMoney + blackjackPayout)
+          animateMoney("win")
+        } else {
+          setMessage("Dealer has Blackjack!")
+          // Money stays the same (bet already deducted)
+        }
+        setGameState("finished")
+        setCanHit(false)
+        setCanStand(false)
+        setCanDoubleDown(false)
+      }, 1000)
+    }
   }
-}
 
   const hit = () => {
     if (deck.length === 0) return
@@ -233,9 +236,9 @@ const dealInitialCards = () => {
     let currentDeck = [...deck]
 
     const dealerPlayStep = () => {
-      const dealerTotal = calculateTotal(currentDealerCards)
+      const currentDealerTotal = calculateTotal(currentDealerCards)
       
-      if (dealerTotal < 17 || (dealerTotal === 17 && currentDealerCards.some(c => c.isAce))) {
+      if (currentDealerTotal < 17 || (currentDealerTotal === 17 && currentDealerCards.some(c => c.isAce))) {
         if (currentDeck.length > 0) {
           const newCard = currentDeck.pop()!
           currentDealerCards.push(newCard)
@@ -246,6 +249,7 @@ const dealInitialCards = () => {
           setTimeout(dealerPlayStep, 1000)
         }
       } else {
+        // Use the final calculated totals
         finishGame(finalPlayerTotal, calculateTotal(currentDealerCards))
       }
     }
@@ -256,22 +260,24 @@ const dealInitialCards = () => {
   const finishGame = (playerFinal: number, dealerFinal: number) => {
     setGameState("finished")
 
+    console.log(`Player: ${playerFinal}, Dealer: ${dealerFinal}`) // Debug log
+
     if (playerFinal > 21) {
-      setMessage("💥 You busted!")
+      setMessage("You busted!")
       animateMoney("lose")
     } else if (dealerFinal > 21) {
-      setMessage("🎉 Dealer busts!")
+      setMessage("Dealer busts!")
       setMoney(prev => prev + currentBet * 2)
       animateMoney("win")
     } else if (playerFinal > dealerFinal) {
-      setMessage("🌟 You win!")
+      setMessage("You win!")
       setMoney(prev => prev + currentBet * 2)
       animateMoney("win")
     } else if (dealerFinal > playerFinal) {
-      setMessage("😔 Dealer wins!")
+      setMessage("Dealer wins!")
       animateMoney("lose")
     } else {
-      setMessage("🤝 It's a push!")
+      setMessage("It's a push!")
       setMoney(prev => prev + currentBet)
     }
   }
@@ -279,7 +285,7 @@ const dealInitialCards = () => {
   const newGame = () => {
     if (money <= 0) {
       setMoney(1000)
-      setMessage("💰 New bank")
+      setMessage("New bank")
     }
     
     setPlayerCards([])
@@ -433,7 +439,7 @@ const dealInitialCards = () => {
           </div>
           {playerTotal === 21 && playerCards.length === 2 && (
             <div className="bg-yellow-500 bg-opacity-90 backdrop-blur-sm rounded-full px-4 py-2 border-2 border-yellow-300 animate-pulse">
-              <span className="text-black font-black">🎊 BLACKJACK! 🎊</span>
+              <span className="text-black font-black">BLACKJACK! </span>
             </div>
           )}
         </div>
@@ -470,12 +476,12 @@ const dealInitialCards = () => {
                   : 'bg-gray-500 bg-opacity-50 text-gray-300 cursor-not-allowed border-2 border-gray-400 border-opacity-30'}
               `}
             >
-              ALL IN
+               ALL IN
             </button>
           </div>
           <div className="text-center text-white opacity-80 mt-6">
             <div className="bg-black bg-opacity-30 backdrop-blur-sm rounded-xl px-6 py-3 border border-white border-opacity-20 inline-block">
-              <p className="text-sm font-medium">Get to 21 without going over • Dealer hits on soft 17 • Blackjack pays 3:2</p>
+              <p className="text-sm font-medium"> Get to 21 without going over • Dealer hits on soft 17 • Blackjack pays 3:2 </p>
             </div>
           </div>
         </div>
@@ -513,7 +519,7 @@ const dealInitialCards = () => {
 
           <div className="text-center text-white opacity-80">
             <div className="bg-black bg-opacity-30 backdrop-blur-sm rounded-xl px-6 py-3 border border-white border-opacity-20 inline-block">
-              <p className="text-sm font-medium"> Get to 21 without going over • Dealer hits on soft 17 • Blackjack pays 3:2 </p>
+              <p className="text-sm font-medium">Get to 21 without going over • Dealer hits on soft 17 • Blackjack pays 3:2 </p>
             </div>
           </div>
         </div>
@@ -526,19 +532,11 @@ const dealInitialCards = () => {
             className="py-4 px-8 rounded-2xl font-bold text-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 border-2 border-white border-opacity-30"
           >
             <Shuffle className="w-6 h-6 inline mr-2" />
-            NEW GAME
+            Play again
           </button>
         </div>
       )}
 
-      {dealingAnimation && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="text-center">
-            <div className="text-6xl mb-4 animate-spin">🃏</div>
-            <div className="text-white text-2xl font-bold animate-pulse">Dealing cards...</div>
-          </div>
-        </div>
-      )}
     </div>
   )
 }
