@@ -15,10 +15,6 @@ export default function Terminal({ isDarkMode = true}: TerminalProps) {
   const [historyIndex, setHistoryIndex] = useState(-1)
   const [showResume, setShowResume] = useState(false)
   const [isResumeLoading, setIsResumeLoading] = useState(true)
-  const [showLinkedin, setShowLinkedin] = useState(false)
-  const [isLinkedinLoading, setIsLinkedinLoading] = useState(true)
-  const [showGithub, setShowGithub] = useState(false)
-  const [isGithubLoading, setIsGithubLoading] = useState(true)
   const inputRef = useRef<HTMLInputElement>(null)
   const terminalRef = useRef<HTMLDivElement>(null)
 
@@ -209,21 +205,19 @@ export default function Terminal({ isDarkMode = true}: TerminalProps) {
         break
 
       case "linkedin":
-        setShowLinkedin(true)
-        setIsLinkedinLoading(true)
+        window.open("https://www.linkedin.com/in/ethannhzhouu/", "_blank")
         setHistory((prev) => [
           ...prev,
-          "Opening LinkedIn profile...",
+          "Opening LinkedIn profile in new tab...",
           "",
         ])
         break
 
       case "github":
-        setShowGithub(true)
-        setIsGithubLoading(true)
+        window.open("https://github.com/ethannhzhouu/ethan-portfolio", "_blank")
         setHistory((prev) => [
           ...prev,
-          "Opening GitHub link...",
+          "Opening GitHub repository in new tab...",
           "",
         ])
         break
@@ -291,76 +285,6 @@ export default function Terminal({ isDarkMode = true}: TerminalProps) {
               src="/EthanZhou_2025Fall_Resume.pdf"
               className="w-full h-full"
               onLoad={() => setIsResumeLoading(false)}
-            />
-          </div>
-        </div>
-      )}
-
-      {/* LinkedIn Modal */}
-      {showLinkedin && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-gray-900 text-white w-11/12 h-5/6 max-w-4xl rounded-lg overflow-hidden relative">
-            {/* Modal Header */}
-            <div className="flex justify-between items-center p-4 border-b border-gray-700">
-              <h2 className="text-lg font-semibold">LinkedIn - Ethan Zhou</h2>
-              <button
-                onClick={() => setShowLinkedin(false)}
-                className="text-gray-400 hover:text-white transition-colors text-xl font-bold"
-              >
-                ×
-              </button>
-            </div>
-            
-            {/* Loading indicator */}
-            {isLinkedinLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 z-10">
-                <div className="text-center">
-                  <div className="text-xl font-semibold mb-2">Loading LinkedIn...</div>
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500 mx-auto"></div>
-                </div>
-              </div>
-            )}
-            
-            {/* LinkedIn iframe */}
-            <iframe
-              src="https://www.linkedin.com/in/ethannhzhouu/"
-              className="w-full h-full"
-              onLoad={() => setIsLinkedinLoading(false)}
-            />
-          </div>
-        </div>
-      )}
-
-      {/* GitHub Modal */}
-      {showGithub && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-gray-900 text-white w-11/12 h-5/6 max-w-4xl rounded-lg overflow-hidden relative">
-            {/* Modal Header */}
-            <div className="flex justify-between items-center p-4 border-b border-gray-700">
-              <h2 className="text-lg font-semibold">GitHub - Ethan Zhou</h2>
-              <button
-                onClick={() => setShowGithub(false)}
-                className="text-gray-400 hover:text-white transition-colors text-xl font-bold"
-              >
-                ×
-              </button>
-            </div>
-            
-            {/* Loading indicator */}
-            {isGithubLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 z-10">
-                <div className="text-center">
-                  <div className="text-xl font-semibold mb-2">Loading GitHub...</div>
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500 mx-auto"></div>
-                </div>
-              </div>
-            )}
-            
-            {/* GitHub iframe */}
-            <iframe
-              src="https://github.com/ethannhzhouu/ethan-portfolio"
-              className="w-full h-full"
-              onLoad={() => setIsGithubLoading(false)}
             />
           </div>
         </div>
