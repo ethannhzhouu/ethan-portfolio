@@ -12,13 +12,11 @@ export default function MailApp({ isDarkMode = true }: MailProps) {
   const bgColor = isDarkMode ? "bg-neutral-800" : "bg-white"
   const hasOpenedRef = useRef(false)
 
-  // Redirect to GitHub profile
   useEffect(() => {
     // Only open once
     if (!hasOpenedRef.current) {
       hasOpenedRef.current = true
 
-      // Open GitHub profile in new tab
       window.open("https://gmail.com", "_blank")
     }
   }, [])

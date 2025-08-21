@@ -10,32 +10,31 @@ interface YoutubeProps {
 export default function Youtube({ isDarkMode = true }: YoutubeProps) {
   const textColor = isDarkMode ? "text-white" : "text-gray-800"
   const bgColor = isDarkMode ? "bg-neutral-900" : "bg-white"
-  const [isLoading, setIsLoading] = useState(true)
 
   return (
     <div className={`h-full ${bgColor} ${textColor} flex flex-col`}>
-      {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-opacity-50 bg-gray-900">
-          <div className="text-center">
-            <div className="relative w-16 h-16 mx-auto mb-4">
-              <Image
-                src="/youtube.png"
-                alt="Youtube"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
-            <h2 className="text-xl font-semibold mb-2">Loading Youtube...</h2>
-          </div>
+      <div className="flex flex-col items-center justify-center h-full p-8 text-center">
+        <div className="relative w-24 h-24 mx-auto mb-6">
+          <Image
+            src="/youtube.png"
+            alt="YouTube"
+            fill
+            className="object-contain"
+          />
         </div>
-      )}
-      
-      <iframe
-        src="https://www.youtube.com/"
-        className="w-full h-full"
-        onLoad={() => setIsLoading(false)}
-      />
+        <h2 className="text-2xl font-bold mb-4">YouTube</h2>
+        <p className="text-lg mb-6 opacity-80">
+          Due to security restrictions, YouTube cannot be embedded directly.
+        </p>
+        <a
+          href="https://www.youtube.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+        >
+          Open YouTube in New Tab
+        </a>
+      </div>
     </div>
   )
 }

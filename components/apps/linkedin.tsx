@@ -10,32 +10,31 @@ interface LinkedInProps {
 export default function LinkedIn({ isDarkMode = true }: LinkedInProps) {
   const textColor = isDarkMode ? "text-white" : "text-gray-800"
   const bgColor = isDarkMode ? "bg-neutral-800" : "bg-white"
-  const [isLoading, setIsLoading] = useState(true)
 
   return (
     <div className={`h-full ${bgColor} ${textColor} flex flex-col`}>
-      {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-opacity-50 bg-neutral-900">
-          <div className="text-center">
-            <div className="relative w-16 h-16 mx-auto mb-4">
-              <Image
-                src="/linkedin.png"
-                alt="LinkedIn"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
-            <h2 className="text-xl font-semibold mb-2">Loading LinkedIn...</h2>
-          </div>
+      <div className="flex flex-col items-center justify-center h-full p-8 text-center">
+        <div className="relative w-24 h-24 mx-auto mb-6">
+          <Image
+            src="/linkedin.png"
+            alt="LinkedIn"
+            fill
+            className="object-contain"
+          />
         </div>
-      )}
-      
-      <iframe
-        src="https://www.linkedin.com/in/ethannhzhouu/"
-        className="w-full h-full"
-        onLoad={() => setIsLoading(false)}
-      />
+        <h2 className="text-2xl font-bold mb-4">LinkedIn Profile</h2>
+        <p className="text-lg mb-6 opacity-80">
+          Connect with me on LinkedIn!
+        </p>
+        <a
+          href="https://www.linkedin.com/in/ethannhzhouu/"
+          target="_blank"
+
+          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+        >
+          Open LinkedIn Profile
+        </a>
+      </div>
     </div>
   )
 }

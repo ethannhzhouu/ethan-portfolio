@@ -173,15 +173,14 @@ const formattedTime = time.toLocaleString("en-US", {
       ${isCharging ? 'bg-green-500/20' : ''}`}
     >
       <div 
-        className={`h-4 mx-0.5 rounded-[2px] transition-all duration-300 relative
+        className={`h-4 mx-0.5 rounded-[2px] transition-all duration-300
         ${isCharging ? 'bg-green-500' : 'bg-current'}`} 
         style={{ width: `${Math.max(2, (batteryLevel))}%` }}
-      >
-        <span className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 text-[11px] font-bold whitespace-nowrap text-white">
-          {batteryLevel}%
-        </span>
-      </div>
+      />
     </div>
+    <span className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-white mix-blend-difference pointer-events-none">
+      {batteryLevel}%
+    </span>
     <div className="absolute -right-[2px] top-1/2 -translate-y-1/2 w-[2px] h-3 bg-current rounded-r-sm" />
   </div>
 
