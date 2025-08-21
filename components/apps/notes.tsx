@@ -23,6 +23,22 @@ my experience and skills in a unique and engaging way
 
 navigate through my portfolio as you would on a mac:
 
+- dock:
+      • contains most important apps for my portfolio
+      • open Safari to see experiences and skills
+      • launchpad access to all apps
+
+built with 🍵 and 😴.
+`,
+      date: "Today, 4:31 AM",
+    },
+    {
+      id: 2,
+      title: "apps & features",
+      content: `mac-inspired portfolio apps:
+built with TypeScript and React
+
+User Interface
 - menu bar (top left to top right): 
       • last updated date
       • sleep / restart / shutdown / logout
@@ -32,32 +48,15 @@ navigate through my portfolio as you would on a mac:
       • control center
       • time display
 
+- spotlight (top right): 
+      • access to all apps
+
 - control center (top right): 
       • toggle light and dark theme
       • brightness slider
       • wi-fi button (disabling wi-fi will disconnect safari)
       • bluetooth button (for aesthetic, no functionality)
       • enter fullscreen
-
-- spotlight (top right): 
-      • access to all apps
-
-- dock (bottom):
-      • contains most important apps for my portfolio
-      • open Safari to see experiences and skills
-      • launchpad access to all apps
-
-feel free to explore my portfolio and get to know me better!
-
-built with 🍵 and 😴.
-`,
-      date: "Today, 4:31 AM",
-    },
-    {
-      id: 2,
-      title: "apps",
-      content: `mac-inspired portfolio apps:
-built with TypeScript and React
 
 Productivity & Social
 • launchpad: customizable app launcher inspired by macOS
@@ -112,7 +111,7 @@ what i do for fun:
 • trying new restaurants and cafes
 • getting better at cooking
 • watching new movies, TV shows, and anime
-• playing League of Legends (goal: challenger)
+• playing competitive games and sports
 • learning new technologies and frameworks
 
 currently learning:
