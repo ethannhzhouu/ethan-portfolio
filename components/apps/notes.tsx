@@ -68,7 +68,7 @@ Productivity & Social
 
 • notes: note-taking for project details
 
-• terminal: interactive command-line interface
+• terminal: interactive commands with my portfolio
 
 • github: direct access to project source code
 
@@ -97,13 +97,34 @@ Media & Entertainment
     {
       id: 3,
       title: "about me",
-      content: `what i like to do for fun:
+      content: `a bit about me:
 
+education:
+• graduated from UC San Diego c/o 2023 
+B.S. in Data Science, minor in Cognitive Science
 
+technical interests:
+• building data-driven applications and scalable systems
+• building side projects like this to learn new skills
+• looking for new interesting work opportunities
+
+what i do for fun:
+• trying new restaurants and cafes
+• getting better at cooking
+• watching new movies, TV shows, and anime
+• playing League of Legends (goal: challenger)
+• learning new technologies and frameworks
+
+currently learning:
+• data structures & algorithms / system design patterns
+• frontend software development
+• social media and content creation
+
+contact:
 email: xethanhzhou@gmail.com
 LinkedIn: https://www.linkedin.com/in/ethannhzhouu/
 `,
-      date: "Yesterday, 1:20 AM",
+      date: "Yesterday, 8:20 PM",
     },
   ])
 

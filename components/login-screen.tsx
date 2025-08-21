@@ -63,7 +63,7 @@ const formattedDate = time.toLocaleDateString('en-US', {
       style={{ backgroundImage: `url('${wallpaper}')` }}
     >
 <div className="flex flex-col items-center mb-8">
-  <div className={`text-6xl font-extralight tracking-tight mb-3 ${isDarkMode ? "text-white" : "text-black"}`}>
+  <div className={`text-6xl font-light tracking-tight mb-3 ${isDarkMode ? "text-white" : "text-black"}`}>
     {formattedTime}
   </div>
   <div className={`text-lg font-light tracking-wide ${isDarkMode ? "text-white/80" : "text-black/80"}`}>

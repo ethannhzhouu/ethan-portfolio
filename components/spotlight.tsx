@@ -67,11 +67,11 @@ export default function Spotlight({ onClose, onAppClick }: SpotlightProps) {
 
 
   const handleAppClick = (app: (typeof spotlightApps)[0]) => {
-  let size = { width: 800, height: 700 }
+  let size = { width: 800, height: 800 }
   let position = { x: Math.random() * 200 + 900, y: Math.random() * 100 + 50 }
 
   if (app.id === "safari") {
-    size = { width: window.innerWidth / 2, height: window.innerHeight - 255}
+    size = { width: window.innerWidth / 2 + 250, height: window.innerHeight - 255}
     position = { x: 950, y: 52 } 
   }
 

@@ -126,7 +126,7 @@ const formattedTime = time.toLocaleString("en-US", {
     >
       <div className="flex-1 flex items-center">
         <button
-          className="flex items-center mr-4 hover:bg-white/10 px-2 py-1 rounded"
+          className="flex items-center mr-4 hover:bg-neutral-400 px-2 py-1 rounded"
           onClick={() => toggleMenu("apple")}
         >
 <AppleIcon
@@ -203,13 +203,13 @@ const formattedTime = time.toLocaleString("en-US", {
           )}
         </div>
 
-        <button onClick={onSpotlightClick} className="hover:bg-neutral-800 p-1.5 rounded-sm">
+        <button onClick={onSpotlightClick} className="hover:bg-neutral-400 p-1.5 rounded-sm">
             <SpotlightIcon className="w-3.5 h-3.5" color={isDarkMode ? "white" : "black"} />
         </button>
 
 <button 
   onClick={onControlCenterClick} 
-  className="hover:bg-neutral-800 p-1.5 rounded-sm"
+  className="hover:bg-neutral-400 p-1.5 rounded-sm"
 >
   <ControlCenterIcon className="w-4 h-4" color={isDarkMode ? "white" : "black"} />
 </button>

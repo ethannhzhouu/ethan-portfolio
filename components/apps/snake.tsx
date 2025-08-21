@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef, useCallback } from "react"
-import { Play, RotateCcw, Pause, ChevronUp, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react"
+import { Play, RotateCcw, Pause } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 interface SnakeProps {
@@ -33,10 +33,10 @@ export default function Snake({ isDarkMode = true }: SnakeProps) {
   const gameCanvasRef = useRef<HTMLCanvasElement>(null)
   const animationFrameRef = useRef<number | null>(null)
 
-  // Color scheme - green chessboard theme
-  const darkGreenTile = "#2d5016"
-  const lightGreenTile = "#4a7c23"
-  const gameAreaBg = isDarkMode ? "#131212ff" : "#f8f9fa"
+  // Color scheme - switched to gray
+  const darkGreenTile = "#737373"
+  const lightGreenTile = "#737373"
+  const gameAreaBg = isDarkMode ? "#262626" : "#f8f9fa"
   const uiTextColor = isDarkMode ? "#ffffff" : "#1f2937"
 
   // Create new apple position
@@ -313,114 +313,54 @@ export default function Snake({ isDarkMode = true }: SnakeProps) {
     setIsGamePaused(true)
   }
 
-  // Direction button handler
-  const changeDirection = (newDirection: Direction) => {
-    const opposites = {
-      "UP": "DOWN",
-      "DOWN": "UP", 
-      "LEFT": "RIGHT",
-      "RIGHT": "LEFT"
-    }
+return (
+  <div className={`h-full flex flex-col ${isDarkMode ? "bg-neutral-800 text-white" : "bg-white text-gray-800"} p-4`} 
+       style={{ fontFamily: "'Courier New', monospace" }}>
     
-    if (movement !== opposites[newDirection]) {
-      setMovement(newDirection)
-    }
-  }
-
-  return (
-    <div className={`h-full flex flex-col ${isDarkMode ? "bg-gray-900 text-white" : "bg-white text-gray-800"} p-4`} 
-         style={{ fontFamily: "'Courier New', monospace" }}>
-      
-      {/* Header with controls */}
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-xl font-bold tracking-wider">SNAKE ARCADE</h1>
-        <div className="flex gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setIsGamePaused(!isGamePaused)}
-            disabled={isGameEnded}
-            className={`font-mono text-xs ${isDarkMode ? "border-gray-600" : ""}`}
-          >
-            {isGamePaused ? <Play className="w-3 h-3 mr-1" /> : <Pause className="w-3 h-3 mr-1" />}
-            {isGamePaused ? "PLAY" : "PAUSE"}
-          </Button>
-          <Button 
-            variant="outline" 
-            size="sm" 
-            onClick={restartGame} 
-            className={`font-mono text-xs ${isDarkMode ? "border-gray-600" : ""}`}
-          >
-            <RotateCcw className="w-3 h-3 mr-1" />
-            RESTART
-          </Button>
-        </div>
-      </div>
-
-      {/* Game canvas */}
-      <div className="flex-1 flex justify-center items-center min-h-0">
-        <canvas
-          ref={gameCanvasRef}
-          width={BOARD_SIZE * TILE_SIZE}
-          height={BOARD_SIZE * TILE_SIZE}
-          className="border-2 border-gray-600 rounded shadow-lg"
-        />
-      </div>
-
-      {/* Mobile directional controls */}
-      <div className="mt-4 grid grid-cols-3 gap-1 max-w-[150px] mx-auto">
-        <div className="col-start-2">
-          <Button
-            variant="outline"
-            size="sm"
-            className="w-8 h-8 p-0 font-mono"
-            onClick={() => changeDirection("UP")}
-            disabled={isGameEnded}
-          >
-            <ChevronUp className="w-4 h-4" />
-          </Button>
-        </div>
-        <div className="col-start-1 row-start-2">
-          <Button
-            variant="outline"
-            size="sm"
-            className="w-8 h-8 p-0 font-mono"
-            onClick={() => changeDirection("LEFT")}
-            disabled={isGameEnded}
-          >
-            <ChevronLeft className="w-4 h-4" />
-          </Button>
-        </div>
-        <div className="col-start-3 row-start-2">
-          <Button
-            variant="outline"
-            size="sm"
-            className="w-8 h-8 p-0 font-mono"
-            onClick={() => changeDirection("RIGHT")}
-            disabled={isGameEnded}
-          >
-            <ChevronRight className="w-4 h-4" />
-          </Button>
-        </div>
-        <div className="col-start-2 row-start-3">
-          <Button
-            variant="outline"
-            size="sm"
-            className="w-8 h-8 p-0 font-mono"
-            onClick={() => changeDirection("DOWN")}
-            disabled={isGameEnded}
-          >
-            <ChevronDown className="w-4 h-4" />
-          </Button>
-        </div>
-      </div>
-
-      {/* Instructions */}
-      <div className="mt-3 text-center">
-        <p className="text-xs font-mono tracking-wide">
-          ARROW KEYS TO MOVE • SPACEBAR TO PAUSE/RESUME
-        </p>
-      </div>
+    {/* Header */}
+    <div className="flex justify-center items-center mb-4">
+      <h1 className="text-xl font-bold tracking-wider">SNAKE ARCADE</h1>
     </div>
-  )
+
+    {/* Game canvas */}
+    <div className="flex-1 flex justify-center items-center min-h-0">
+      <canvas
+        ref={gameCanvasRef}
+        width={BOARD_SIZE * TILE_SIZE}
+        height={BOARD_SIZE * TILE_SIZE}
+        className={`border-2 rounded shadow-lg ${isDarkMode ? "border-neutral-600" : "border-gray-600"}`}
+      />
+    </div>
+
+    {/* Controls */}
+    <div className="flex justify-center gap-2 mt-1">
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => setIsGamePaused(!isGamePaused)}
+        disabled={isGameEnded}
+        className={`font-mono text-xs ${isDarkMode ? "border-neutral-600" : ""}`}
+      >
+        {isGamePaused ? <Play className="w-3 h-3 mr-1" /> : <Pause className="w-3 h-3 mr-1" />}
+        {isGamePaused ? "PLAY" : "PAUSE"}
+      </Button>
+      <Button 
+        variant="outline" 
+        size="sm" 
+        onClick={restartGame} 
+        className={`font-mono text-xs ${isDarkMode ? "border-neutral-600" : ""}`}
+      >
+        <RotateCcw className="w-3 h-3 mr-1" />
+        RESTART
+      </Button>
+    </div>
+
+    {/* Instructions */}
+    <div className="mt-16 text-center">
+      <p className="text-xs font-mono tracking-wide">
+        ARROW KEYS TO MOVE • SPACEBAR TO PAUSE/RESUME
+      </p>
+    </div>
+  </div>
+)
 }
