@@ -26,16 +26,27 @@ export default function ShutdownScreen({ onBoot }: ShutdownScreenProps) {
       }
     };
 
+    const handleClick = () => {
+      if (showBootText) {
+        onBoot();
+      }
+    };
+
     window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
+    window.addEventListener('click', handleClick);
+    
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+      window.removeEventListener('click', handleClick);
+    };
   }, [onBoot, showBootText]);
 
   return (
-    <div className="h-screen w-screen bg-black flex flex-col items-center justify-center">
+    <div className={`h-screen w-screen bg-black flex flex-col items-center justify-center ${showBootText ? 'cursor-pointer' : ''}`}>
       {showBootText ? (
         <div className="flex flex-col items-center">
           <AppleIcon className="w-40 h-40 text-white mb-12 opacity-80" />
-          <p className="text-white text-lg animate-pulse">Press space to boot</p>
+          <p className="text-white text-lg animate-pulse">press space to boot</p>
         </div>
       ) : (
         <div className="flex flex-col items-center">

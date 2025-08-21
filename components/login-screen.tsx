@@ -19,6 +19,7 @@ export default function LoginScreen({
   onToggleDarkMode,
 }: LoginScreenProps) {
   const [time, setTime] = useState(new Date());
+  const [canInteract, setCanInteract] = useState(false);
 
   // Update time every second
   useEffect(() => {
@@ -29,17 +30,37 @@ export default function LoginScreen({
     return () => clearInterval(timer);
   }, []);
 
-  // Handle space key press
+  // Enable interaction after a delay to prevent immediate logout->login
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCanInteract(true);
+    }, 500); // 500ms delay
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Handle space key press and mouse click
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.code === 'Space') {
+      if (e.code === 'Space' && canInteract) {
+        onLogin();
+      }
+    };
+
+    const handleClick = () => {
+      if (canInteract) {
         onLogin();
       }
     };
 
     window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [onLogin]);
+    window.addEventListener('click', handleClick);
+    
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+      window.removeEventListener('click', handleClick);
+    };
+  }, [onLogin, canInteract]);
 
   // Format time and date
 const formattedTime = time.toLocaleTimeString('en-US', {
@@ -59,7 +80,7 @@ const formattedDate = time.toLocaleDateString('en-US', {
 
   return (
     <div
-      className="h-screen w-screen bg-cover bg-center flex flex-col items-center justify-center"
+      className={`h-screen w-screen bg-cover bg-center flex flex-col items-center justify-center ${canInteract ? 'cursor-pointer' : ''}`}
       style={{ backgroundImage: `url('${wallpaper}')` }}
     >
 <div className="flex flex-col items-center mb-8">
@@ -78,13 +99,16 @@ const formattedDate = time.toLocaleDateString('en-US', {
         <h2 className={`text-2xl font-medium mb-6 ${isDarkMode ? "text-white" : "text-black"}`}>
           Ethan
         </h2> 
-        <div className={`text-lg ${isDarkMode ? "text-white/70" : "text-black/70"} animate-pulse`}>
-          press space to enter
+        <div className={`text-lg ${isDarkMode ? "text-white/70" : "text-black/70"} ${canInteract ? 'animate-pulse' : 'opacity-50'}`}>
+          {canInteract ? 'press space to enter' : 'loading ...'}
         </div>
       </div>
 
       <button
-        onClick={onToggleDarkMode}
+        onClick={(e) => {
+          e.stopPropagation();
+          onToggleDarkMode();
+        }}
         className={`absolute top-4 right-4 p-2 rounded-full 
           ${isDarkMode ? "bg-white/10 hover:bg-white/20" : "bg-black/10 hover:bg-black/20"}
           transition-colors duration-200`}

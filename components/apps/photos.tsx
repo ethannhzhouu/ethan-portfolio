@@ -34,13 +34,6 @@ export default function Photos({ isDarkMode = true }: PhotosProps) {
         <div className="absolute inset-0 flex items-center justify-center bg-opacity-50 bg-neutral-900 z-10">
           <div className="text-center">
             <div className="relative w-16 h-16 mx-auto mb-4">
-              <Image
-                src="/photos-icon.png"
-                alt="Photos"
-                fill
-                className="object-contain"
-                priority
-              />
             </div>
             <h2 className="text-xl font-semibold mb-2">Loading Photos...</h2>
           </div>
