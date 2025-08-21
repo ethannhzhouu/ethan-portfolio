@@ -140,7 +140,7 @@ const dealInitialCards = () => {
   setCanStand(true)
   setCanDoubleDown(playerHand.length === 2 && money >= currentBet)
   setShowDealerHole(false)
-  setMessage("🃏 Hit or Stand?")
+  setMessage("Hit or Stand?")
 
   playerHand.forEach(card => animateCard(card.id))
   dealerHand.forEach(card => animateCard(card.id))
@@ -159,7 +159,7 @@ const dealInitialCards = () => {
         setMoney(prev => prev + Math.floor(currentBet * 2.5))
         animateMoney("win")
       } else {
-        setMessage("😤 Dealer has Blackjack!")
+        setMessage("Dealer has Blackjack!")
       }
       setGameState("finished")
       setCanHit(false)
@@ -183,7 +183,7 @@ const dealInitialCards = () => {
 
     const total = calculateTotal(newPlayerCards)
     if (total > 21) {
-      setMessage("💥 BUST!")
+      setMessage("BUST!")
       setGameState("finished")
       setCanHit(false)
       setCanStand(false)
@@ -199,7 +199,7 @@ const dealInitialCards = () => {
     setCanDoubleDown(false)
     setShowDealerHole(true)
     setGameState("dealer")
-    setMessage("🎭 Dealer's turn...")
+    setMessage("Dealer's turn...")
 
     setTimeout(() => {
       dealerPlay()
