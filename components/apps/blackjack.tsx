@@ -25,7 +25,7 @@ export default function Blackjack() {
   const [dealerTotal, setDealerTotal] = useState(0)
   const [money, setMoney] = useState(1000)
   const [currentBet, setCurrentBet] = useState(0)
-  const [message, setMessage] = useState("🎰 Place your bet")
+  const [message, setMessage] = useState("Place your bet")
   const [canHit, setCanHit] = useState(false)
   const [canStand, setCanStand] = useState(false)
   const [canDoubleDown, setCanDoubleDown] = useState(false)
@@ -249,21 +249,21 @@ const dealInitialCards = () => {
     setGameState("finished")
 
     if (playerFinal > 21) {
-      setMessage("💀 You busted!")
+      setMessage(" You busted!")
       animateMoney("lose")
     } else if (dealerFinal > 21) {
-      setMessage("🎉 Dealer busts!")
+      setMessage(" Dealer busts!")
       setMoney(prev => prev + currentBet * 2)
       animateMoney("win")
     } else if (playerFinal > dealerFinal) {
-      setMessage("🌟 You win!")
+      setMessage("You win!")
       setMoney(prev => prev + currentBet * 2)
       animateMoney("win")
     } else if (dealerFinal > playerFinal) {
-      setMessage("😔 Dealer wins!")
+      setMessage("Dealer wins!")
       animateMoney("lose")
     } else {
-      setMessage("🤝 It's a push!")
+      setMessage("It's a push!")
       setMoney(prev => prev + currentBet)
     }
   }
@@ -282,7 +282,7 @@ const dealInitialCards = () => {
     setCanStand(false)
     setCanDoubleDown(false)
     setShowDealerHole(false)
-    setMessage("🎰 Place your bet")
+    setMessage("Place your bet")
     
     if (deck.length < 20) {
       setDeck(createDeck())
@@ -405,7 +405,7 @@ const dealInitialCards = () => {
       <div className="mb-8 relative z-10">
         <div className="flex items-center gap-4 mb-4">
           <div className="bg-purple-600 bg-opacity-80 backdrop-blur-sm rounded-full px-4 py-2 border border-white border-opacity-30">
-            <span className="font-bold text-white text-lg">🎩 Dealer</span>
+            <span className="font-bold text-white text-lg">Dealer</span>
           </div>
           <div className="bg-black bg-opacity-40 backdrop-blur-sm rounded-full px-4 py-2 border border-white border-opacity-20">
             <span className="text-white font-bold">
@@ -426,7 +426,7 @@ const dealInitialCards = () => {
       <div className="mb-8 relative z-10">
         <div className="flex items-center gap-4 mb-4 justify-center">
           <div className="bg-green-600 bg-opacity-80 backdrop-blur-sm rounded-full px-4 py-2 border border-white border-opacity-30">
-            <span className="font-bold text-white text-lg">🎯 You</span>
+            <span className="font-bold text-white text-lg">You</span>
           </div>
           <div className="bg-black bg-opacity-40 backdrop-blur-sm rounded-full px-4 py-2 border border-white border-opacity-20">
             <span className="text-white font-bold">Total: {playerTotal}</span>
@@ -470,12 +470,12 @@ const dealInitialCards = () => {
                   : 'bg-gray-500 bg-opacity-50 text-gray-300 cursor-not-allowed border-2 border-gray-400 border-opacity-30'}
               `}
             >
-              🔥 ALL IN
+              ALL IN
             </button>
           </div>
               <div className="text-center text-white opacity-80 mt-6">
       <div className="bg-black bg-opacity-30 backdrop-blur-sm rounded-xl px-6 py-3 border border-white border-opacity-20 inline-block">
-        <p className="text-sm font-medium">🎯 Get to 21 without going over • Dealer hits on soft 17 • Blackjack pays 3:2 🎯</p>
+        <p className="text-sm font-medium">Get to 21 without going over • Dealer hits on soft 17 • Blackjack pays 3:2</p>
       </div>
     </div>
         </div>
@@ -514,7 +514,7 @@ const dealInitialCards = () => {
 
     <div className="text-center text-white opacity-80">
       <div className="bg-black bg-opacity-30 backdrop-blur-sm rounded-xl px-6 py-3 border border-white border-opacity-20 inline-block">
-        <p className="text-sm font-medium">🎯 Get to 21 without going over • Dealer hits on soft 17 • Blackjack pays 3:2 🎯</p>
+        <p className="text-sm font-medium"> Get to 21 without going over • Dealer hits on soft 17 • Blackjack pays 3:2 </p>
       </div>
     </div>
   </div>
