@@ -126,6 +126,7 @@ export default function Blackjack() {
     }
   }
 
+
 const dealInitialCards = () => {
   const newDeck = [...deck]
   
@@ -153,13 +154,15 @@ const dealInitialCards = () => {
       setShowDealerHole(true)
       if (playerBJ && dealerBJ) {
         setMessage("🤝 Both have Blackjack! It's a push!")
-        setMoney(prev => prev + currentBet)
+        setMoney(prev => prev + currentBet) // Return the bet
       } else if (playerBJ) {
         setMessage("🎊 BLACKJACK!")
-        setMoney(prev => prev + Math.floor(currentBet * 2.5))
+        // Return bet + blackjack payout (bet * 2.5 total)
+        setMoney(prev => prev + currentBet + Math.floor(currentBet * 1.5))
         animateMoney("win")
       } else {
         setMessage("Dealer has Blackjack!")
+        // Money stays the same (bet already deducted)
       }
       setGameState("finished")
       setCanHit(false)
@@ -189,11 +192,16 @@ const dealInitialCards = () => {
       setCanStand(false)
       animateMoney("lose")
     } else if (total === 21) {
-      stand()
+      // Pass the correct total to stand function
+      standWithTotal(total)
     }
   }
 
   const stand = () => {
+    standWithTotal(calculateTotal(playerCards))
+  }
+
+  const standWithTotal = (finalPlayerTotal: number) => {
     setCanHit(false)
     setCanStand(false)
     setCanDoubleDown(false)
@@ -202,7 +210,7 @@ const dealInitialCards = () => {
     setMessage("Dealer's turn...")
 
     setTimeout(() => {
-      dealerPlay()
+      dealerPlay(finalPlayerTotal)
     }, 1000)
   }
 
@@ -220,7 +228,7 @@ const dealInitialCards = () => {
     }
   }
 
-  const dealerPlay = () => {
+  const dealerPlay = (finalPlayerTotal: number) => {
     let currentDealerCards = [...dealerCards]
     let currentDeck = [...deck]
 
@@ -238,7 +246,7 @@ const dealInitialCards = () => {
           setTimeout(dealerPlayStep, 1000)
         }
       } else {
-        finishGame(calculateTotal(playerCards), calculateTotal(currentDealerCards))
+        finishGame(finalPlayerTotal, calculateTotal(currentDealerCards))
       }
     }
 
@@ -249,21 +257,21 @@ const dealInitialCards = () => {
     setGameState("finished")
 
     if (playerFinal > 21) {
-      setMessage(" You busted!")
+      setMessage("💥 You busted!")
       animateMoney("lose")
     } else if (dealerFinal > 21) {
-      setMessage(" Dealer busts!")
+      setMessage("🎉 Dealer busts!")
       setMoney(prev => prev + currentBet * 2)
       animateMoney("win")
     } else if (playerFinal > dealerFinal) {
-      setMessage("You win!")
+      setMessage("🌟 You win!")
       setMoney(prev => prev + currentBet * 2)
       animateMoney("win")
     } else if (dealerFinal > playerFinal) {
-      setMessage("Dealer wins!")
+      setMessage("😔 Dealer wins!")
       animateMoney("lose")
     } else {
-      setMessage("It's a push!")
+      setMessage("🤝 It's a push!")
       setMoney(prev => prev + currentBet)
     }
   }
@@ -313,7 +321,6 @@ const dealInitialCards = () => {
             transform: isHidden ? 'rotateY(0deg)' : 'rotateY(0deg)',
           }}
         >
-
           <div 
             className="absolute inset-0 opacity-10"
             style={{
@@ -332,7 +339,6 @@ const dealInitialCards = () => {
             </div>
           ) : (
             <div className="flex flex-col h-full relative z-10">
-
               <div className="flex flex-col items-start">
                 <span 
                   className="text-lg font-black leading-none"
@@ -342,7 +348,6 @@ const dealInitialCards = () => {
                 </span>
               </div>
               
-
               <div className="flex items-center justify-center flex-grow">
                 <span 
                   className="text-4xl font-bold transform hover:scale-110 transition-transform duration-200"
@@ -354,7 +359,6 @@ const dealInitialCards = () => {
             </div>
           )}
           
-
           <div 
             className="absolute inset-0 rounded-xl"
             style={{
@@ -370,7 +374,6 @@ const dealInitialCards = () => {
     <div 
       className="min-h-screen flex flex-col p-6 font-sans relative overflow-hidden bg-neutral-800"
     >
-
       <div className="flex justify-between items-center mb-8 relative z-10">
         <div className="text-center">
           <h1 className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-orange-300 to-yellow-400 drop-shadow-lg tracking-wider">
@@ -394,13 +397,11 @@ const dealInitialCards = () => {
         </div>
       </div>
 
-
       <div className="text-center mb-8 relative z-10">
         <div className="bg-black bg-opacity-40 backdrop-blur-sm rounded-2xl px-8 py-4 border border-white border-opacity-20 inline-block">
           <p className="text-2xl font-bold text-white drop-shadow-lg">{message}</p>
         </div>
       </div>
-
 
       <div className="mb-8 relative z-10">
         <div className="flex items-center gap-4 mb-4">
@@ -421,7 +422,6 @@ const dealInitialCards = () => {
           )}
         </div>
       </div>
-
 
       <div className="mb-8 relative z-10">
         <div className="flex items-center gap-4 mb-4 justify-center">
@@ -473,53 +473,51 @@ const dealInitialCards = () => {
               ALL IN
             </button>
           </div>
-              <div className="text-center text-white opacity-80 mt-6">
-      <div className="bg-black bg-opacity-30 backdrop-blur-sm rounded-xl px-6 py-3 border border-white border-opacity-20 inline-block">
-        <p className="text-sm font-medium">Get to 21 without going over • Dealer hits on soft 17 • Blackjack pays 3:2</p>
-      </div>
-    </div>
+          <div className="text-center text-white opacity-80 mt-6">
+            <div className="bg-black bg-opacity-30 backdrop-blur-sm rounded-xl px-6 py-3 border border-white border-opacity-20 inline-block">
+              <p className="text-sm font-medium">Get to 21 without going over • Dealer hits on soft 17 • Blackjack pays 3:2</p>
+            </div>
+          </div>
         </div>
       )}
 
-{gameState === "playing" && (
-  <div className="flex flex-col items-center gap-4 mb-8 relative z-10">
-    <div className="flex gap-4 justify-center">
-      <button
-        onClick={hit}
-        disabled={!canHit}
-        className="py-4 px-8 rounded-2xl font-bold text-xl bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 border-2 border-white border-opacity-30 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-      >
-        <Zap className="w-6 h-6 inline mr-2" />
-        HIT
-      </button>
-      <button
-        onClick={stand}
-        disabled={!canStand}
-        className="py-4 px-8 rounded-2xl font-bold text-xl bg-gradient-to-r from-yellow-500 to-orange-600 hover:from-yellow-400 hover:to-orange-500 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 border-2 border-white border-opacity-30 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-      >
-        <Trophy className="w-6 h-6 inline mr-2" />
-        STAND
-      </button>
-      {canDoubleDown && (
-        <button
-          onClick={doubleDown}
-          className="py-4 px-8 rounded-2xl font-bold text-xl bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-400 hover:to-indigo-500 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 border-2 border-white border-opacity-30"
-        >
-          <Heart className="w-6 h-6 inline mr-2" />
-          DOUBLE
-        </button>
+      {gameState === "playing" && (
+        <div className="flex flex-col items-center gap-4 mb-8 relative z-10">
+          <div className="flex gap-4 justify-center">
+            <button
+              onClick={hit}
+              disabled={!canHit}
+              className="py-4 px-8 rounded-2xl font-bold text-xl bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 border-2 border-white border-opacity-30 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+            >
+              <Zap className="w-6 h-6 inline mr-2" />
+              HIT
+            </button>
+            <button
+              onClick={stand}
+              disabled={!canStand}
+              className="py-4 px-8 rounded-2xl font-bold text-xl bg-gradient-to-r from-yellow-500 to-orange-600 hover:from-yellow-400 hover:to-orange-500 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 border-2 border-white border-opacity-30 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+            >
+              <Trophy className="w-6 h-6 inline mr-2" />
+              STAND
+            </button>
+            {canDoubleDown && (
+              <button
+                onClick={doubleDown}
+                className="py-4 px-8 rounded-2xl font-bold text-xl bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-400 hover:to-indigo-500 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 border-2 border-white border-opacity-30"
+              >
+                <Heart className="w-6 h-6 inline mr-2" />
+                DOUBLE
+              </button>
+            )}
+          </div>
+
+          <div className="text-center text-white opacity-80">
+            <div className="bg-black bg-opacity-30 backdrop-blur-sm rounded-xl px-6 py-3 border border-white border-opacity-20 inline-block">
+              <p className="text-sm font-medium"> Get to 21 without going over • Dealer hits on soft 17 • Blackjack pays 3:2 </p>
+            </div>
+          </div>
+        </div>
       )}
-    </div>
-
-
-    <div className="text-center text-white opacity-80">
-      <div className="bg-black bg-opacity-30 backdrop-blur-sm rounded-xl px-6 py-3 border border-white border-opacity-20 inline-block">
-        <p className="text-sm font-medium"> Get to 21 without going over • Dealer hits on soft 17 • Blackjack pays 3:2 </p>
-      </div>
-    </div>
-  </div>
-)}
-
 
       {gameState === "finished" && (
         <div className="flex justify-center relative z-10">
@@ -533,7 +531,6 @@ const dealInitialCards = () => {
         </div>
       )}
 
-
       {dealingAnimation && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="text-center">
@@ -542,7 +539,6 @@ const dealInitialCards = () => {
           </div>
         </div>
       )}
-
     </div>
   )
 }
