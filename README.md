@@ -7,3 +7,4 @@ Researched existing open source macOS portfolios
 - https://github.com/Renovamen/playground-macos
 - https://github.com/daprior/danielprior-macos/
 
+Deployed with Vercel
