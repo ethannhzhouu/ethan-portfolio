@@ -244,20 +244,20 @@ export default function Music({ isDarkMode = true }: MusicProps) {
             <span>{formatTime(currentTime)}</span>
             <span>{isAudioReady ? formatTime(duration) : currentTrack.duration}</span>
           </div>
-          <input
-            type="range"
-            min="0"
-            max={duration || 100}
-            value={currentTime}
-            onChange={handleTimeChange}
-            disabled={!isAudioReady}
-            className="w-full h-1 bg-gray-700 rounded-full appearance-none cursor-pointer"
-            style={{
-              background: `linear-gradient(to right, #ddebe2ff 0%, #ddebe2ff ${
-                (currentTime / (duration || 1)) * 100
-              }%, #4D4D4D ${(currentTime / (duration || 1)) * 100}%, #4D4D4D 100%)`,
-            }}
-          />
+<input
+  type="range"
+  min="0"
+  max={duration || 100}
+  value={currentTime}
+  onChange={handleTimeChange}
+  disabled={!isAudioReady}
+  className="w-full h-1 bg-gray-700 rounded-full appearance-none cursor-pointer"
+  style={{
+    background: `linear-gradient(to right, ${isDarkMode ? '#ddebe2ff' : '#059669'} 0%, ${isDarkMode ? '#ddebe2ff' : '#059669'} ${
+      (currentTime / (duration || 1)) * 100
+    }%, ${isDarkMode ? '#4D4D4D' : '#d1d5db'} ${(currentTime / (duration || 1)) * 100}%, ${isDarkMode ? '#4D4D4D' : '#d1d5db'} 100%)`,
+  }}
+/>
         </div>
 
         {/* Controls */}
@@ -288,20 +288,20 @@ export default function Music({ isDarkMode = true }: MusicProps) {
             {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
           </button>
 
-          <input
-            type="range"
-            min="0"
-            max="1"
-            step="0.01"
-            value={isMuted ? 0 : volume}
-            onChange={handleVolumeChange}
-            className="w-full h-1 bg-gray-700 rounded-full appearance-none cursor-pointer"
-            style={{
-              background: `linear-gradient(to right, #ddebe2ff 0%, #ddebe2ff ${(isMuted ? 0 : volume) * 100}%, #4D4D4D ${
-                (isMuted ? 0 : volume) * 100
-              }%, #4D4D4D 100%)`,
-            }}
-          />
+<input
+  type="range"
+  min="0"
+  max="1"
+  step="0.01"
+  value={isMuted ? 0 : volume}
+  onChange={handleVolumeChange}
+  className="w-full h-1 bg-gray-700 rounded-full appearance-none cursor-pointer"
+  style={{
+    background: `linear-gradient(to right, ${isDarkMode ? '#ddebe2ff' : '#059669'} 0%, ${isDarkMode ? '#ddebe2ff' : '#059669'} ${(isMuted ? 0 : volume) * 100}%, ${isDarkMode ? '#4D4D4D' : '#d1d5db'} ${
+      (isMuted ? 0 : volume) * 100
+    }%, ${isDarkMode ? '#4D4D4D' : '#d1d5db'} 100%)`,
+  }}
+/>
         </div>
       </div>
 
