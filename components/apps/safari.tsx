@@ -95,12 +95,12 @@ export default function Safari({ isDarkMode = true }: SafariProps) {
       <p>Python, SQL, JavaScript / TypeScript, Java, HTML/CSS, R</p>
     </div>
     <div>
-      <h3 className="font-semibold mb-2">Frameworks & Technologies</h3>
-      <p>Next.js, React.js, Tailwind, SKLearn, Pytorch, Pandas, AWS, Dask, Spark, Flask, Django</p>
+      <h3 className="font-semibold mb-2">Frameworks & Libraries</h3>
+      <p>React.js, Next.js, Tailwind, Flask, Django, PyTorch, TensorFlow, NumPy, scikit-learn, Pandas, Dask</p>
     </div>
     <div>
       <h3 className="font-semibold mb-2">Industry Tools</h3>
-      <p> Git, Tableau, PowerBI, LookerStudio, PostgreSQL, Microsoft Excel, Google Workspace</p>
+      <p> Git, Tableau, PowerBI, AWS, PostgreSQL, Docker, Kubernetes, Apache Spark, Excel, Google Workspace</p>
     </div>
   </div>
 </div>
@@ -181,11 +181,18 @@ export default function Safari({ isDarkMode = true }: SafariProps) {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">macOS Portfolio</h3>
-                  <p className="text-gray-500 mb-2">Personal Project • August 2025 • Next.js, React.js, TypeScript, Tailwind</p>
+                  <p className="text-gray-500 mb-2">Personal Project • August 2025 • Next.js, React.js, TypeScript, Tailwind  • {" "}
+  <a
+    href="https://ethannhzhouu.vercel.app/"
+    target="_blank"
+    className={isDarkMode ? "text-blue-400 hover:underline" : "text-blue-600 hover:underline"}
+  >
+    Website
+  </a></p>
                   <ul className="list-disc list-inside space-y-1">
                     <li>Implemented clean and responsive UI components such as launchpad, menu bar, control center, spotlight, and dock</li>
                     <li>Engineered interface with light/dark mode, brightness slider, and system lifecycle features (boot, sleep, shutdown)</li>
-                    <li>Created 14 different apps to showcase my skills, experiences, projects, and creativity</li>
+                    <li>Created 12 different apps to showcase my skills, experiences, projects, and creativity</li>
                   </ul>
                 </div>
               </div>
@@ -197,7 +204,28 @@ export default function Safari({ isDarkMode = true }: SafariProps) {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">Fraud Detection in Ethereum Transaction Networks</h3>
-                  <p className="text-gray-500 mb-2">UCSD Capstone Project with TigerGraph • January 2023 - March 2023 • Python, G-SQL, ML</p>
+                  <p className="text-gray-500 mb-2">UCSD Capstone Project with TigerGraph • January 2023 - March 2023 • Python, G-SQL, ML  •  {" "}
+  <a
+    href="https://drive.google.com/file/d/1bVt7uPKAqD1ME_K0zVTcBjMNZxnwPvFf/view"
+    target="_blank"
+    className={isDarkMode ? "text-blue-400 hover:underline" : "text-blue-600 hover:underline"}
+  >
+    Article
+  </a> / {" "}
+  <a
+    href="https://github.com/KazumaYamamoto2023/DSC180B-Q2-Project/tree/main"
+    target="_blank"
+    className={isDarkMode ? "text-blue-400 hover:underline" : "text-blue-600 hover:underline"}
+  >
+    Github
+  </a> / {" "}
+  <a
+    href="https://srgelinas.github.io/dsc180b_eth_fraud/"
+    target="_blank"
+    className={isDarkMode ? "text-blue-400 hover:underline" : "text-blue-600 hover:underline"}
+  >
+    Website
+  </a></p>
                   <ul className="list-disc list-inside space-y-1">
                     <li>Implemented a Topology Adaptive Graph Convolutional Network (TA-GCN) with Python and G-SQL, with an average classification accuracy of ~82.2%, to predict if an Ethereum wallet in the transaction graph is fraudulent or not</li>
                     <li>Documented the effectiveness of graph-based algorithms and traditional ML algorithms to detect fraud in Ethereum networks</li>
@@ -211,11 +239,20 @@ export default function Safari({ isDarkMode = true }: SafariProps) {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">Carbon Reduction with RunBuggy</h3>
-                  <p className="text-gray-500 mb-2">UCSD Innovation Sprints • February 2022 - May 2022 • Python, SQL, Tableau</p>
+<p className="text-gray-500 mb-2">
+  UCSD Innovation Sprints Program • February 2022 - May 2022 • Python, SQL, Tableau  •{" "}
+  <a
+    href="https://thebasement.ucsd.edu/programs/i4x.html"
+    target="_blank"
+    className={isDarkMode ? "text-blue-400 hover:underline" : "text-blue-600 hover:underline"}
+  >
+    Program
+  </a>
+</p>
                   <ul className="list-disc list-inside space-y-1">
                     <li>Processed company data with Python and SQL to slash the number of trucks needed and overall mileage required to move cars</li>
                     <li>Optimized Runbuggy’s transporter network by building a k-neighbors model to classify CO2 emissions with a 96% accuracy</li>
-                    <li>Communicated a variety of results on showcase day by creating multiple dashboards in Python and Tableau</li>
+                    <li>Presented project results to 30+ participants on showcase day with dashboards built in Python and Tableau.</li>
                   </ul>
                 </div>
               </div>

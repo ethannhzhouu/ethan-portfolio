@@ -25,8 +25,8 @@ navigate through my portfolio as you would on a mac:
 
 - dock:
       • contains most important apps for my portfolio
+      • launchpad: access to all apps
       • open Safari to see experiences and skills
-      • launchpad access to all apps
 
 built with 🍵 and 😴.
 `,
@@ -38,7 +38,7 @@ built with 🍵 and 😴.
       content: `mac-inspired portfolio apps:
 built with TypeScript and React
 
-User Interface
+𝗨𝘀𝗲𝗿 𝗜𝗻𝘁𝗲𝗿𝗳𝗮𝗰𝗲
 - menu bar (top left to top right): 
       • last updated date
       • sleep / restart / shutdown / logout
@@ -58,7 +58,7 @@ User Interface
       • bluetooth button (for aesthetic, no functionality)
       • enter fullscreen
 
-Productivity & Social
+𝗣𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝘃𝗶𝘁𝘆 & 𝗦𝗼𝗰𝗶𝗮𝗹
 • launchpad: customizable app launcher inspired by macOS
 
 • safari: opens a website about my experiences and skills
@@ -76,7 +76,7 @@ Productivity & Social
 • resume: opens my resume with a downloadable PDF
 
 
-Media & Entertainment
+𝗠𝗲𝗱𝗶𝗮 & 𝗘𝗻𝘁𝗲𝗿𝘁𝗮𝗶𝗻𝗺𝗲𝗻𝘁
 • music: music player featuring 3 songs I'm listening to right now
 
 • photos: 3 picture click slideshow of me
@@ -84,8 +84,6 @@ Media & Entertainment
 • youtube: links to youtube where you can watch videos
 
 • weather: app with animated particles and mock weather data
-
-• snake: classic snake arcade game
 
 • blackjack: try to reach as close to 21 versus the dealer
 
@@ -114,7 +112,7 @@ what i do for fun:
 • playing competitive games and sports
 • learning new technologies and frameworks
 
-currently learning:
+currently learning: 
 • data structures & algorithms / system design patterns
 • frontend software development
 • social media and content creation

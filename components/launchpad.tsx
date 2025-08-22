@@ -14,11 +14,10 @@ const launchpadApps = [
   { id: "weather", title: "Weather", icon: "/weather.png", component: "Weather" },
   { id: "linkedin", title: "LinkedIn", icon: "/linkedin.png", component: "LinkedIn" },
   { id: "resume", title: "Resume", icon: "/resume.png", component: "Resume" },
-  { id: "snake", title: "Snake", icon: "/snake.png", component: "Snake"},
   { id: "photos", title: "Photos", icon: "/photos.png", component: "Photos"},
-  { id: "blackjack", title: "Blackjack", icon: "/blackjack.png", component: "Blackjack"},
   { id: "youtube", title: "Youtube", icon: "/youtube.png", component: "Youtube"},
   { id: "loldodge", title: "LoLDodge", icon: "/loldodge.png", component: "loldodge"},
+  { id: "blackjack", title: "Blackjack", icon: "/blackjack.png", component: "Blackjack"},
 ]
 
 interface LaunchpadProps {
